@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/UI.gd" type="Script" id=2]
+[ext_resource path="res://Game/Game.tscn" type="PackedScene" id=3]
+
+[node name="UI" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Game" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
+
+[node name="VictoryPopup" type="PopupPanel" parent="."]
+pause_mode = 2
+margin_left = 440.0
+margin_top = 251.0
+margin_right = 584.0
+margin_bottom = 349.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+popup_exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryPopup"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 139.0
+margin_bottom = 93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryLabel" type="Label" parent="VictoryPopup/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 40.0
+text = "U WIN :)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="VictoryPopup/VBoxContainer"]
+margin_top = 44.0
+margin_right = 134.0
+margin_bottom = 88.0
+text = "Restart"
+
+[node name="DeathPopup" type="PopupPanel" parent="."]
+pause_mode = 2
+visible = true
+margin_left = 390.0
+margin_top = 251.0
+margin_right = 633.0
+margin_bottom = 349.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+popup_exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathPopup"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 238.0
+margin_bottom = 93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathLabel" type="Label" parent="DeathPopup/VBoxContainer"]
+margin_right = 233.0
+margin_bottom = 40.0
+text = "U DEAD MATE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="DeathPopup/VBoxContainer"]
+margin_top = 44.0
+margin_right = 233.0
+margin_bottom = 88.0
+text = "Restart"
+
+[connection signal="death" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_death"]
+[connection signal="victory" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_victory"]
+[connection signal="pressed" from="VictoryPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VictoryPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="DeathPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="DeathPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]

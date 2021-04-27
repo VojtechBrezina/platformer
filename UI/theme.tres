@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[ext_resource path="res://fonts/montreal/Montreal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/styles/default_panel_style.tres" type="StyleBox" id=2]
+[ext_resource path="res://UI/styles/default_button_normal_style.tres" type="StyleBox" id=3]
+[ext_resource path="res://UI/styles/default_button_hover_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI/styles/default_button_pressed_style.tres" type="StyleBox" id=5]
+
+[resource]
+default_font = ExtResource( 1 )
+Button/styles/hover = ExtResource( 4 )
+Button/styles/normal = ExtResource( 3 )
+Button/styles/pressed = ExtResource( 5 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+Panel/styles/panel = ExtResource( 2 )
+PopupPanel/styles/panel = ExtResource( 2 )
