@@ -49,9 +49,9 @@ position = Vector2( 1655.87, -53.227 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 50, 200 )
 
+[connection signal="start" from="." to="Door" method="_on_Game_start"]
 [connection signal="start" from="." to="Player" method="_on_Game_start"]
 [connection signal="start" from="." to="Lever" method="_on_Game_start"]
-[connection signal="start" from="." to="Door" method="_on_Game_start"]
 [connection signal="body_entered" from="VictoryWorm" to="." method="_on_VictoryWorm_body_entered"]
 [connection signal="body_entered" from="Lever" to="." method="_on_Lever_body_entered"]
 [connection signal="death" from="Player" to="." method="_on_Player_death"]
