@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _set_state(s: bool) -> void:
 	if s != state:
-		emit_signal('state_changed', s)
 		state = s
 		$Sprite.region_rect = SPRITE_REGIONS[state]
 		$CollisionShape2D.set_deferred('disabled', state)
