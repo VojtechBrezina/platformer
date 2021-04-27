@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Rect2( 372, 40, 53, 147 ), Rect2( 477, 0, 52, 147 ) ]
 }
 
-[node name="VictoryWorm" type="Area2D" groups=[
+[node name="VictoryWorm" type="StaticBody2D" groups=[
 "victory",
 ]]
 script = ExtResource( 2 )

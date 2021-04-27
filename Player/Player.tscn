@@ -168,8 +168,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 35.0
-height = 23.0414
+radius = 33.0
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 38.5

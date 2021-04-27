@@ -10,6 +10,7 @@ var velocity := Vector2(0, 0)
 var last_direction := 'right'
 
 signal death
+signal victory
 
 
 func _ready() -> void:

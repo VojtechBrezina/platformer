@@ -84,12 +84,13 @@ position = Vector2( -177.182, 210.092 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 50, 200 )
 
+[connection signal="start" from="." to="Enemies/Spider" method="_on_Game_start"]
 [connection signal="start" from="." to="Lever" method="_on_Game_start"]
 [connection signal="start" from="." to="Player" method="_on_Game_start"]
-[connection signal="start" from="." to="Enemies/Spider" method="_on_Game_start"]
 [connection signal="start" from="." to="Door" method="_on_Game_start"]
 [connection signal="start" from="." to="Enemies/Path2D/Fly" method="_on_Game_start"]
-[connection signal="start" from="." to="Map/InvisibleStructure2" method="_on_Game_start"]
 [connection signal="start" from="." to="Map/InvisibleStructure1" method="_on_Game_start"]
+[connection signal="start" from="." to="Map/InvisibleStructure2" method="_on_Game_start"]
 [connection signal="body_entered" from="Lever" to="." method="_on_Lever_body_entered"]
 [connection signal="death" from="Player" to="." method="_on_Player_death"]
+[connection signal="victory" from="Player" to="." method="_on_Player_victory"]

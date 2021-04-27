@@ -15,12 +15,7 @@ func _on_RestartButton_pressed() -> void:
 func _on_Lever_body_entered(body: Node) -> void:
 	if body == $Player:
 		$Lever.state = !$Lever.state
-		$Door.state = $Lever.state
-
-func _on_VictoryWorm_body_entered(body: Node) -> void:
-	if body == $Player:
-		get_tree().paused = true
-		emit_signal('victory')
+		$Door.state = $Lever.state	
 
 func _on_Player_death() -> void:
 	get_tree().paused = true
@@ -31,3 +26,8 @@ func _on_Spider_body_entered(body: Node) -> void:
 	if body == $Player:
 		get_tree().paused = true
 		emit_signal('death')
+
+
+func _on_Player_victory() -> void:
+	get_tree().paused = true
+	emit_signal('victory')
