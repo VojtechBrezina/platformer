@@ -97,7 +97,7 @@ position = Vector2( 3520.42, -25.0892 )
 position = Vector2( 4019.96, -142.338 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3217.72, -52.495 )
+position = Vector2( -902.623, 121.309 )
 
 [connection signal="start" from="." to="Player" method="_on_Game_start"]
 [connection signal="start" from="." to="Enemies/Spider2" method="_on_Game_start"]
