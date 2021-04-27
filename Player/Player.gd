@@ -9,6 +9,8 @@ var velocity := Vector2(0, 0)
 
 var last_direction := 'right'
 
+onready var default_position := position
+
 signal death
 signal victory
 
@@ -47,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 			
 	
 func _on_Game_start() -> void:
-	position = Vector2(50, 200)
+	position = default_position
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
