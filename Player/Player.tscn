@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 33.4793
-height = 30.3216
+height = 23.0414
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle_left"
@@ -175,6 +175,7 @@ tracks/1/keys = {
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
