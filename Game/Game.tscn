@@ -1,12 +1,21 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://VictoryWorm/VictoryWorm.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Game/tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://EnemyWorm/EnemyWorm.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/Base pack/bg.png" type="Texture" id=4]
 [ext_resource path="res://Game/Game.gd" type="Script" id=5]
 [ext_resource path="res://Lever/Lever.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Door/Door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Spider/Spider.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Fly/Fly.tscn" type="PackedScene" id=9]
+[ext_resource path="res://VictoryWorm/VictoryWorm.tscn" type="PackedScene" id=10]
+[ext_resource path="res://InvisibleStructure/InvisibleStructure.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -260.41, -183.453, 0, 0, 0, 0, 462.785, -185.973, 0, 0, 0, 0, 538.38, 86.1697, 0, 0, 0, 0, -285.608, 194.523, 0, 0, 0, 0, -252.85, -70.0605, 0, 0, 0, 0, -260.41, -183.453 )
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 5 )
@@ -18,6 +27,7 @@ scale = Vector2( 10, 10 )
 motion_mirroring = Vector2( 256, 256 )
 
 [node name="Bacground" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 11.8, 0 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 256, 256 )
@@ -30,15 +40,24 @@ cell_size = Vector2( 70, 70 )
 format = 1
 tile_data = PoolIntArray( -196585, 14, 0, -196584, 12, 0, -196583, 12, 0, -196582, 2, 0, -65524, 17, 0, -65523, 12, 0, -65522, 21, 0, 65526, 20, 0, 65527, 12, 0, 65528, 12, 0, 65529, 12, 0, 65530, 21, 0, 11, 17, 0, 12, 18, 0, 13, 15, 0, 23, 14, 0, 24, 12, 0, 25, 12, 0, 26, 12, 0, 27, 13, 0, 51, 20, 0, 52, 12, 0, 53, 12, 0, 54, 12, 0, 55, 21, 0, 131063, 15, 0, 131064, 15, 0, 131065, 15, 0, 65546, 17, 0, 65547, 18, 0, 65548, 15, 0, 65549, 15, 0, 65553, 14, 0, 65554, 12, 0, 65555, 12, 0, 65556, 13, 0, 65588, 15, 0, 65589, 15, 0, 65590, 15, 0, 196599, 15, 0, 196600, 15, 0, 196601, 15, 0, 131081, 17, 0, 131082, 18, 0, 131083, 15, 0, 131084, 15, 0, 131085, 15, 0, 131108, 14, 0, 131109, 12, 0, 131110, 12, 0, 131111, 12, 0, 131112, 12, 0, 131113, 13, 0, 131124, 15, 0, 131125, 15, 0, 131126, 15, 0, 262135, 15, 0, 262136, 15, 0, 262137, 15, 0, 196616, 17, 0, 196617, 18, 0, 196618, 15, 0, 196619, 15, 0, 196620, 15, 0, 196621, 15, 0, 196660, 15, 0, 196661, 15, 0, 196662, 15, 0, 327671, 15, 0, 327672, 15, 0, 327673, 15, 0, 327677, 14, 0, 327678, 12, 0, 327679, 12, 0, 262144, 12, 0, 262145, 12, 0, 262146, 12, 0, 262147, 12, 0, 262148, 13, 0, 262151, 17, 0, 262152, 18, 0, 262153, 15, 0, 262154, 15, 0, 262155, 15, 0, 262156, 15, 0, 262157, 15, 0, 262176, 14, 0, 262177, 12, 0, 262178, 13, 0, 262196, 15, 0, 262197, 15, 0, 262198, 15, 0, 393207, 15, 0, 393208, 15, 0, 393209, 15, 0, 327732, 15, 0, 327733, 15, 0, 327734, 15, 0, 458743, 15, 0, 458744, 15, 0, 458745, 15, 0, 393268, 15, 0, 393269, 15, 0, 393270, 15, 0, 524279, 15, 0, 524280, 15, 0, 524281, 15, 0, 458756, 17, 0, 458757, 12, 0, 458758, 12, 0, 458759, 12, 0, 458760, 12, 0, 458761, 12, 0, 458762, 12, 0, 458763, 12, 0, 458764, 16, 0, 458797, 14, 0, 458798, 12, 0, 458799, 12, 0, 458800, 12, 0, 458801, 12, 0, 458802, 13, 0, 458804, 15, 0, 458805, 15, 0, 458806, 15, 0, 589815, 15, 0, 589816, 15, 0, 589817, 15, 0, 589818, 12, 0, 589819, 12, 0, 589820, 12, 0, 589821, 12, 0, 589822, 12, 0, 589823, 12, 0, 524288, 12, 0, 524289, 12, 0, 524290, 12, 0, 524291, 12, 0, 524292, 18, 0, 524293, 15, 0, 524294, 15, 0, 524295, 15, 0, 524296, 15, 0, 524297, 15, 0, 524298, 15, 0, 524299, 15, 0, 524300, 19, 0, 524301, 16, 0, 524340, 15, 0, 524341, 15, 0, 524342, 15, 0, 655351, 15, 0, 655352, 15, 0, 655353, 15, 0, 655354, 15, 0, 655355, 15, 0, 655356, 15, 0, 655357, 15, 0, 655358, 15, 0, 655359, 15, 0, 589824, 15, 0, 589825, 15, 0, 589826, 15, 0, 589827, 15, 0, 589828, 15, 0, 589829, 15, 0, 589830, 15, 0, 589831, 15, 0, 589832, 15, 0, 589833, 15, 0, 589834, 15, 0, 589835, 15, 0, 589836, 15, 0, 589837, 19, 0, 589838, 16, 0, 589876, 15, 0, 589877, 15, 0, 589878, 15, 0, 720887, 15, 0, 720888, 15, 0, 720889, 15, 0, 720890, 15, 0, 720891, 15, 0, 720892, 15, 0, 720893, 15, 0, 720894, 15, 0, 720895, 15, 0, 655360, 15, 0, 655361, 15, 0, 655362, 15, 0, 655363, 15, 0, 655364, 15, 0, 655365, 15, 0, 655366, 15, 0, 655367, 15, 0, 655368, 15, 0, 655369, 15, 0, 655370, 15, 0, 655371, 15, 0, 655372, 15, 0, 655373, 15, 0, 655374, 19, 0, 655375, 12, 0, 655376, 12, 0, 655377, 12, 0, 655378, 12, 0, 655379, 12, 0, 655380, 12, 0, 655381, 12, 0, 655382, 12, 0, 655383, 12, 0, 655384, 12, 0, 655385, 12, 0, 655386, 12, 0, 655387, 12, 0, 655388, 12, 0, 655389, 12, 0, 655390, 12, 0, 655391, 12, 0, 655392, 12, 0, 655393, 12, 0, 655394, 12, 0, 655395, 12, 0, 655396, 12, 0, 655397, 12, 0, 655398, 12, 0, 655399, 12, 0, 655400, 12, 0, 655401, 12, 0, 655402, 12, 0, 655403, 12, 0, 655404, 12, 0, 655405, 12, 0, 655406, 12, 0, 655407, 12, 0, 655408, 12, 0, 655409, 12, 0, 655410, 12, 0, 655411, 12, 0, 655412, 15, 0, 655413, 15, 0, 655414, 15, 0, 786423, 15, 0, 786424, 15, 0, 786425, 15, 0, 786426, 15, 0, 786427, 15, 0, 786428, 15, 0, 786429, 15, 0, 786430, 15, 0, 786431, 15, 0, 720896, 15, 0, 720897, 15, 0, 720898, 15, 0, 720899, 15, 0, 720900, 15, 0, 720901, 15, 0, 720902, 15, 0, 720903, 15, 0, 720904, 15, 0, 720905, 15, 0, 720906, 15, 0, 720907, 15, 0, 720908, 15, 0, 720909, 15, 0, 720910, 15, 0, 720911, 15, 0, 720912, 15, 0, 720913, 15, 0, 720914, 15, 0, 720915, 15, 0, 720916, 15, 0, 720917, 15, 0, 720918, 15, 0, 720919, 15, 0, 720920, 15, 0, 720921, 15, 0, 720922, 15, 0, 720923, 15, 0, 720924, 15, 0, 720925, 15, 0, 720926, 15, 0, 720927, 15, 0, 720928, 15, 0, 720929, 15, 0, 720930, 15, 0, 720931, 15, 0, 720932, 15, 0, 720933, 15, 0, 720934, 15, 0, 720935, 15, 0, 720936, 15, 0, 720937, 15, 0, 720938, 15, 0, 720939, 15, 0, 720940, 15, 0, 720941, 15, 0, 720942, 15, 0, 720943, 15, 0, 720944, 15, 0, 720945, 15, 0, 720946, 15, 0, 720947, 15, 0, 720948, 15, 0, 720949, 15, 0, 720950, 15, 0, 851959, 15, 0, 851960, 15, 0, 851961, 15, 0, 851962, 15, 0, 851963, 15, 0, 851964, 15, 0, 851965, 15, 0, 851966, 15, 0, 851967, 15, 0, 786432, 15, 0, 786433, 15, 0, 786434, 15, 0, 786435, 15, 0, 786436, 15, 0, 786437, 15, 0, 786438, 15, 0, 786439, 15, 0, 786440, 15, 0, 786441, 15, 0, 786442, 15, 0, 786443, 15, 0, 786444, 15, 0, 786445, 15, 0, 786446, 15, 0, 786447, 15, 0, 786448, 15, 0, 786449, 15, 0, 786450, 15, 0, 786451, 15, 0, 786452, 15, 0, 786453, 15, 0, 786454, 15, 0, 786455, 15, 0, 786456, 15, 0, 786457, 15, 0, 786458, 15, 0, 786459, 15, 0, 786460, 15, 0, 786461, 15, 0, 786462, 15, 0, 786463, 15, 0, 786464, 15, 0, 786465, 15, 0, 786466, 15, 0, 786467, 15, 0, 786468, 15, 0, 786469, 15, 0, 786470, 15, 0, 786471, 15, 0, 786472, 15, 0, 786473, 15, 0, 786474, 15, 0, 786475, 15, 0, 786476, 15, 0, 786477, 15, 0, 786478, 15, 0, 786479, 15, 0, 786480, 15, 0, 786481, 15, 0, 786482, 15, 0, 786483, 15, 0, 786484, 15, 0, 786485, 15, 0, 786486, 15, 0 )
 
-[node name="DeathLayer" type="TileMap" parent="Map"]
-position = Vector2( 1, 0 )
+[node name="DeathLayer" type="TileMap" parent="Map" groups=[
+"deadly",
+]]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 70, 70 )
 format = 1
-tile_data = PoolIntArray( 262142, 11, 0, 196610, 11, 0 )
+tile_data = PoolIntArray( 262142, 11, 0 )
 
-[node name="VictoryWorm" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3431.45, 418.546 )
+[node name="InvisibleStructure1" parent="Map" instance=ExtResource( 11 )]
+tile_data = PoolIntArray( 262175, 14, 0, 262176, 12, 0 )
+
+[node name="InvisibleStructure2" parent="Map" groups=[
+"deadly",
+] instance=ExtResource( 11 )]
+tile_data = PoolIntArray( 196610, 11, 0 )
+
+[node name="VictoryWorm" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3507.07, 418.372 )
 
 [node name="Lever" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1296.25, 35.3674 )
@@ -46,12 +65,31 @@ position = Vector2( 1296.25, 35.3674 )
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1655.87, -53.227 )
 
+[node name="Enemies" type="Node2D" parent="." groups=[
+"deadly",
+]]
+
+[node name="Spider" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 943.057, -99.4416 )
+
+[node name="Path2D" type="Path2D" parent="Enemies"]
+curve = SubResource( 1 )
+
+[node name="Fly" parent="Enemies/Path2D" instance=ExtResource( 9 )]
+position = Vector2( -260.41, -183.453 )
+
+[node name="EnemyyWorm" parent="." instance=ExtResource( 2 )]
+position = Vector2( -177.182, 210.092 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 50, 200 )
 
-[connection signal="start" from="." to="Door" method="_on_Game_start"]
 [connection signal="start" from="." to="Lever" method="_on_Game_start"]
 [connection signal="start" from="." to="Player" method="_on_Game_start"]
-[connection signal="body_entered" from="VictoryWorm" to="." method="_on_VictoryWorm_body_entered"]
+[connection signal="start" from="." to="Enemies/Spider" method="_on_Game_start"]
+[connection signal="start" from="." to="Door" method="_on_Game_start"]
+[connection signal="start" from="." to="Enemies/Path2D/Fly" method="_on_Game_start"]
+[connection signal="start" from="." to="Map/InvisibleStructure2" method="_on_Game_start"]
+[connection signal="start" from="." to="Map/InvisibleStructure1" method="_on_Game_start"]
 [connection signal="body_entered" from="Lever" to="." method="_on_Lever_body_entered"]
 [connection signal="death" from="Player" to="." method="_on_Player_death"]

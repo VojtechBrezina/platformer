@@ -25,3 +25,9 @@ func _on_VictoryWorm_body_entered(body: Node) -> void:
 func _on_Player_death() -> void:
 	get_tree().paused = true
 	emit_signal('death')
+
+
+func _on_Spider_body_entered(body: Node) -> void:
+	if body == $Player:
+		get_tree().paused = true
+		emit_signal('death')

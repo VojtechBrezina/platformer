@@ -42,11 +42,17 @@ func _physics_process(_delta: float) -> void:
 		if velocity.x != 0:
 			last_direction = ('right' if velocity.x > 0 else 'left')
 		animation_player.play(('walk_' if (is_on_floor() or is_on_wall()) else 'jump_') + last_direction)
-
-	for i in range(get_slide_count()):
-		if get_slide_collision(i).collider == get_node('../Map/DeathLayer'):
-			emit_signal('death')
+		
 			
 	
 func _on_Game_start() -> void:
 	position = Vector2(50, 200)
+
+
+func _on_Area2D_body_entered(body: Node) -> void:
+	if body.is_in_group('deadly'):
+		emit_signal('death')
+	if body.is_in_group('victory'):
+		emit_signal('victory')
+	if body.is_in_group('invisible'):
+		body.discover()

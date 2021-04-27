@@ -28,17 +28,15 @@ render_target_update_mode = 3
 
 [node name="Game" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
 
-[node name="VictoryPopup" type="PopupPanel" parent="."]
-pause_mode = 2
-margin_left = 440.0
-margin_top = 251.0
-margin_right = 584.0
-margin_bottom = 349.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-popup_exclusive = true
+[node name="CenterContainer" type="CenterContainer" parent="."]
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VictoryPopup"]
+[node name="VictoryPopup" type="Panel" parent="CenterContainer"]
+pause_mode = 2
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VictoryPopup"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 139.0
@@ -47,7 +45,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VictoryLabel" type="Label" parent="VictoryPopup/VBoxContainer"]
+[node name="VictoryLabel" type="Label" parent="CenterContainer/VictoryPopup/VBoxContainer"]
 margin_right = 134.0
 margin_bottom = 40.0
 text = "U WIN :)"
@@ -56,24 +54,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" type="Button" parent="VictoryPopup/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="CenterContainer/VictoryPopup/VBoxContainer"]
 margin_top = 44.0
 margin_right = 134.0
 margin_bottom = 88.0
 text = "Restart"
 
-[node name="DeathPopup" type="PopupPanel" parent="."]
+[node name="DeathPopup" type="Panel" parent="CenterContainer"]
 pause_mode = 2
-visible = true
-margin_left = 390.0
-margin_top = 251.0
-margin_right = 633.0
-margin_bottom = 349.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-popup_exclusive = true
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DeathPopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/DeathPopup"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 238.0
@@ -82,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeathLabel" type="Label" parent="DeathPopup/VBoxContainer"]
+[node name="DeathLabel" type="Label" parent="CenterContainer/DeathPopup/VBoxContainer"]
 margin_right = 233.0
 margin_bottom = 40.0
 text = "U DEAD MATE"
@@ -91,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" type="Button" parent="DeathPopup/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="CenterContainer/DeathPopup/VBoxContainer"]
 margin_top = 44.0
 margin_right = 233.0
 margin_bottom = 88.0
@@ -99,7 +92,7 @@ text = "Restart"
 
 [connection signal="death" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_death"]
 [connection signal="victory" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_victory"]
-[connection signal="pressed" from="VictoryPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="VictoryPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="DeathPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="DeathPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VictoryPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VictoryPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/DeathPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/DeathPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]

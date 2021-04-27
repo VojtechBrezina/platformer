@@ -4,14 +4,14 @@ func _ready() -> void:
 	pass
 
 func _on_Game_victory() -> void:
-	$VictoryPopup.popup_centered()
+	$CenterContainer/VictoryPopup.show()
 
 
 func _on_RestartButton_pressed() -> void:
-	$VictoryPopup.hide()
-	$DeathPopup.hide()
+	$CenterContainer/VictoryPopup.hide()
+	$CenterContainer/DeathPopup.hide()
 	get_tree().paused = false
 
 
 func _on_Game_death() -> void:
-	$DeathPopup.popup_centered()
+	$CenterContainer/DeathPopup.show()

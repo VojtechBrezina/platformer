@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/Base pack/Player/p1_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 33.4793
-height = 23.0414
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "idle_left"
 length = 0.1
 tracks/0/type = "value"
@@ -35,7 +31,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "idle_right"
 length = 0.1
 tracks/0/type = "value"
@@ -63,7 +59,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -90,7 +86,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -115,6 +111,33 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 72, 97 ), Rect2( 73, 0, 72, 97 ), Rect2( 146, 0, 72, 97 ), Rect2( 0, 98, 72, 97 ), Rect2( 73, 98, 72, 97 ), Rect2( 146, 98, 72, 97 ), Rect2( 219, 0, 72, 97 ), Rect2( 292, 0, 72, 97 ), Rect2( 219, 98, 72, 97 ), Rect2( 365, 0, 72, 97 ), Rect2( 292, 98, 72, 97 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -141,51 +164,28 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=7]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 0, 0, 72, 97 ), Rect2( 73, 0, 72, 97 ), Rect2( 146, 0, 72, 97 ), Rect2( 0, 98, 72, 97 ), Rect2( 73, 98, 72, 97 ), Rect2( 146, 98, 72, 97 ), Rect2( 219, 0, 72, 97 ), Rect2( 292, 0, 72, 97 ), Rect2( 219, 98, 72, 97 ), Rect2( 365, 0, 72, 97 ), Rect2( 292, 98, 72, 97 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ false ]
 }
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 35.0
+height = 23.0414
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 38.5
+height = 23.0414
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.5, 0.5 )
-shape = SubResource( 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../PlayerSprite")
-anims/idle_left = SubResource( 2 )
-anims/idle_right = SubResource( 3 )
-anims/jump_left = SubResource( 4 )
-anims/jump_right = SubResource( 5 )
-anims/walk_left = SubResource( 6 )
-anims/walk_right = SubResource( 7 )
+anims/idle_left = SubResource( 1 )
+anims/idle_right = SubResource( 2 )
+anims/jump_left = SubResource( 3 )
+anims/jump_right = SubResource( 4 )
+anims/walk_left = SubResource( 5 )
+anims/walk_right = SubResource( 6 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -205,3 +205,15 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.5, 0.5 )
+shape = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.5, 0.5 )
+shape = SubResource( 8 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
