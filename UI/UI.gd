@@ -3,8 +3,13 @@ extends MarginContainer
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$MarginContainer/TimeLabel.text = _format_time($ViewportContainer/Viewport/Game.time())
+
+func _input(event) -> void:
+	if event.is_action_pressed('restart') and get_tree().paused:
+		_on_RestartButton_pressed()
+		$ViewportContainer/Viewport/Game._on_RestartButton_pressed()
 
 func _on_Game_victory() -> void:
 	$CenterContainer/VictoryPopup/VBoxContainer/VictoryLabel.text = 'U WIN (time: ' + _format_time($ViewportContainer/Viewport/Game.victory_time) + ')'

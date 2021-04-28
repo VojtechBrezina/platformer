@@ -6,6 +6,7 @@
 [ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=4]
 
 [node name="UI" type="MarginContainer"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -15,6 +16,7 @@ __meta__ = {
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
+pause_mode = 1
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -48,6 +50,15 @@ custom_fonts/font = ExtResource( 4 )
 text = "00:00:00.000"
 align = 2
 
+[node name="VersionLabel" type="Label" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 550.0
+margin_right = 100.0
+margin_bottom = 590.0
+size_flags_horizontal = 0
+size_flags_vertical = 12
+text = "v0.1.8"
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 pause_mode = 2
 size_flags_horizontal = 0
@@ -78,7 +89,7 @@ __meta__ = {
 margin_top = 44.0
 margin_right = 134.0
 margin_bottom = 88.0
-text = "Restart"
+text = "Restart [R]"
 
 [node name="DeathPopup" type="Panel" parent="CenterContainer"]
 visible = false
@@ -107,7 +118,7 @@ __meta__ = {
 margin_top = 44.0
 margin_right = 233.0
 margin_bottom = 88.0
-text = "Restart"
+text = "Restart [R]"
 
 [connection signal="death" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_death"]
 [connection signal="victory" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_victory"]
