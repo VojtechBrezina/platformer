@@ -48,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 		
 			
 	
-func _on_Game_start() -> void:
+func new_game() -> void:
 	position = default_position
 
 

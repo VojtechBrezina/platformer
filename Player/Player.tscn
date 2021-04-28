@@ -175,7 +175,9 @@ height = 26.0
 radius = 35.5799
 height = 26.764
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"new_game",
+]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

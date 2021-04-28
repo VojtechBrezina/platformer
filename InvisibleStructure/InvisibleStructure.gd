@@ -16,7 +16,7 @@ func discover() -> void:
 		$AnimationPlayer.play('show')
 
 
-func _on_Game_start() -> void:
+func new_game() -> void:
 	hide()
 	shown = false
 	modulate = Color(1, 1, 1, 0)

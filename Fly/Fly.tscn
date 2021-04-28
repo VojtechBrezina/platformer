@@ -23,7 +23,9 @@ tracks/0/keys = {
 "values": [ Rect2( 262, 114, 57, 45 ), Rect2( 71, 333, 65, 39 ) ]
 }
 
-[node name="Fly" type="PathFollow2D"]
+[node name="Fly" type="PathFollow2D" groups=[
+"new_game",
+]]
 rotate = false
 script = ExtResource( 2 )
 

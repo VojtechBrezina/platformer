@@ -20,6 +20,7 @@ tracks/0/keys = {
 
 [node name="InvisibleStructure" type="TileMap" groups=[
 "invisible",
+"new_game",
 ]]
 modulate = Color( 1, 1, 1, 0.4 )
 tile_set = ExtResource( 1 )

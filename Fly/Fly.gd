@@ -11,5 +11,5 @@ func _physics_process(delta: float) -> void:
 	p_pos = position
 
 
-func _on_Game_start() -> void:
+func new_game() -> void:
 	offset = 0

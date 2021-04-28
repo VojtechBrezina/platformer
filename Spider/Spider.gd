@@ -31,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 		
 			
 	
-func _on_Game_start() -> void:
+func new_game() -> void:
 	position = default_position
 	dir = default_dir
 	$Sprite.flip_h = dir == 1

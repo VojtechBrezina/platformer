@@ -19,5 +19,5 @@ func _set_state(s: bool) -> void:
 func _get_state() -> bool:
 	return state
 
-func _on_Game_start() -> void:
+func new_game() -> void:
 	_set_state(false)

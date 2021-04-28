@@ -25,6 +25,7 @@ extents = Vector2( 34.3335, 23.8791 )
 
 [node name="Spider" type="KinematicBody2D" groups=[
 "deadly",
+"new_game",
 ]]
 script = ExtResource( 2 )
 
