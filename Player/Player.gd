@@ -10,8 +10,8 @@ var velocity := Vector2(0, 0)
 var last_direction := 'right'
 
 onready var default_position := position
+onready var checkpoint_position := default_position
 
-signal death
 signal victory
 
 
@@ -50,19 +50,23 @@ func _physics_process(_delta: float) -> void:
 	
 func new_game() -> void:
 	position = default_position
+	checkpoint_position = default_position
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group('deadly'):
-		emit_signal('death')
+		if checkpoint_position == default_position:
+			get_tree().call_group('new_game', 'new_game')
+		else:
+			position = checkpoint_position
 	if body.is_in_group('victory'):
 		emit_signal('victory')
 	if body.is_in_group('trigger'):
 		body.trigger()
 
 
-
-
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.is_in_group('trigger'):
 		area.trigger()
+		if area.is_in_group('checkpoint'):
+			checkpoint_position = area.position

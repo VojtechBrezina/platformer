@@ -1,9 +1,65 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UI.gd" type="Script" id=2]
 [ext_resource path="res://Game/Game.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="UI" type="MarginContainer"]
 pause_mode = 2
@@ -31,7 +87,7 @@ render_target_update_mode = 3
 
 [node name="Game" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HUDContainer" type="MarginContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_constants/margin_right = 10
@@ -39,7 +95,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="TimeLabel" type="Label" parent="MarginContainer"]
+[node name="TimeLabel" type="Label" parent="HUDContainer"]
 margin_left = 810.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -50,7 +106,7 @@ custom_fonts/font = ExtResource( 4 )
 text = "00:00:00.000"
 align = 2
 
-[node name="VersionLabel" type="Label" parent="MarginContainer"]
+[node name="VersionLabel" type="Label" parent="HUDContainer"]
 margin_left = 10.0
 margin_top = 550.0
 margin_right = 100.0
@@ -59,70 +115,61 @@ size_flags_horizontal = 0
 size_flags_vertical = 12
 text = "v0.1.8"
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-pause_mode = 2
+[node name="RestartButton" type="Button" parent="HUDContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 185.0
+margin_bottom = 54.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+text = "Restart [R]"
 
-[node name="VictoryPopup" type="Panel" parent="CenterContainer"]
-visible = false
+[node name="HBoxContainer" type="VBoxContainer" parent="HUDContainer"]
+margin_left = 711.0
+margin_top = 501.0
+margin_right = 1014.0
+margin_bottom = 590.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_constants/separation = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VictoryPopup"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 139.0
-margin_bottom = 93.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VictoryLabel" type="Label" parent="CenterContainer/VictoryPopup/VBoxContainer"]
-margin_right = 134.0
+[node name="ModeLabel" type="Label" parent="HUDContainer/HBoxContainer"]
+margin_right = 303.0
 margin_bottom = 40.0
+text = "gamemode: CHAD"
+
+[node name="ModeButton" type="Button" parent="HUDContainer/HBoxContainer"]
+margin_left = 48.0
+margin_top = 45.0
+margin_right = 255.0
+margin_bottom = 89.0
+size_flags_horizontal = 4
+text = "[C] to toggle"
+
+[node name="VictoryLabel" type="Label" parent="HUDContainer"]
+visible = false
+margin_left = 445.0
+margin_top = 280.0
+margin_right = 579.0
+margin_bottom = 320.0
+size_flags_horizontal = 4
 text = "U WIN :)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" type="Button" parent="CenterContainer/VictoryPopup/VBoxContainer"]
-margin_top = 44.0
-margin_right = 134.0
-margin_bottom = 88.0
-text = "Restart [R]"
+[node name="HideTimer" type="Timer" parent="HUDContainer"]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
-[node name="DeathPopup" type="Panel" parent="CenterContainer"]
-visible = false
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUDContainer"]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/DeathPopup"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 238.0
-margin_bottom = 93.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DeathLabel" type="Label" parent="CenterContainer/DeathPopup/VBoxContainer"]
-margin_right = 233.0
-margin_bottom = 40.0
-text = "U DEAD MATE"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RestartButton" type="Button" parent="CenterContainer/DeathPopup/VBoxContainer"]
-margin_top = 44.0
-margin_right = 233.0
-margin_bottom = 88.0
-text = "Restart [R]"
-
-[connection signal="death" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_death"]
 [connection signal="victory" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_victory"]
-[connection signal="pressed" from="CenterContainer/VictoryPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CenterContainer/VictoryPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CenterContainer/DeathPopup/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CenterContainer/DeathPopup/VBoxContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="HUDContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="HUDContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="HUDContainer/HBoxContainer/ModeButton" to="." method="toggle_checkpoints"]
+[connection signal="timeout" from="HUDContainer/HideTimer" to="." method="_on_HideTimer_timeout"]

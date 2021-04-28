@@ -1,29 +1,42 @@
 extends MarginContainer
 
+var checkpoints := false
+var mode_names := {
+	true: 'VIRGIN',
+	false: 'CHAD'
+}
+
 func _ready() -> void:
-	pass
+	$HUDContainer/HBoxContainer/ModeLabel.text = 'Game mode: %s' % mode_names[checkpoints]
+	get_tree().call_deferred('call_group', 'checkpoint', 'set_enabled', checkpoints)
 
 func _process(_delta: float) -> void:
-	$MarginContainer/TimeLabel.text = _format_time($ViewportContainer/Viewport/Game.time())
+	$HUDContainer/TimeLabel.text = _format_time($ViewportContainer/Viewport/Game.time())
 
 func _input(event) -> void:
-	if event.is_action_pressed('restart') and get_tree().paused:
-		_on_RestartButton_pressed()
-		$ViewportContainer/Viewport/Game._on_RestartButton_pressed()
+	if event.is_action_pressed('restart'):
+		$HUDContainer/RestartButton.emit_signal('pressed')
+	if event.is_action_pressed('change_mode'):
+		$HUDContainer/HBoxContainer/ModeButton.emit_signal('pressed')
+	if event is InputEventMouseMotion:
+		if (event as InputEventMouseMotion).speed.length() >= 500:
+			if not $HUDContainer.visible:
+				$HUDContainer/AnimationPlayer.play('fade_in')
+				$HUDContainer/HideTimer.start()
+
 
 func _on_Game_victory() -> void:
-	$CenterContainer/VictoryPopup/VBoxContainer/VictoryLabel.text = 'U WIN (time: ' + _format_time($ViewportContainer/Viewport/Game.victory_time) + ')'
-	$CenterContainer/VictoryPopup.show()
+	$HUDContainer/VictoryLabel.show()
 
+func toggle_checkpoints():
+	$HUDContainer/RestartButton.emit_signal('pressed')
+	checkpoints = not checkpoints
+	$HUDContainer/HBoxContainer/ModeLabel.text = 'Game mode: %s' % mode_names[checkpoints]
+	get_tree().call_group('checkpoint', 'set_enabled', checkpoints)
 
 func _on_RestartButton_pressed() -> void:
-	$CenterContainer/VictoryPopup.hide()
-	$CenterContainer/DeathPopup.hide()
+	$HUDContainer/VictoryLabel.hide()
 	get_tree().paused = false
-
-
-func _on_Game_death() -> void:
-	$CenterContainer/DeathPopup.show()
 
 func _format_time(time: int) -> String:
 	var msec := '%03d' % (time % 1000)
@@ -35,3 +48,7 @@ func _format_time(time: int) -> String:
 	var hours := '%02d' % (time)
 
 	return hours + ':' + minutes + ':' + sec + '.' + msec
+
+
+func _on_HideTimer_timeout() -> void:
+	$HUDContainer/AnimationPlayer.play('fade_out')

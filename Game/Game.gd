@@ -1,8 +1,6 @@
 extends Node2D
 
 signal victory
-#signal start
-signal death
 
 var start_time := 0
 var victory_time := 0
@@ -20,9 +18,6 @@ func _on_Lever_body_entered(body: Node) -> void:
 		$Lever.state = !$Lever.state
 		$Door.state = $Lever.state	
 
-func _on_Player_death() -> void:
-	get_tree().paused = true
-	emit_signal('death')
 
 
 func _on_Spider_body_entered(body: Node) -> void:

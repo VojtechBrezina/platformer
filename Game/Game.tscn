@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EnemyWorm/EnemyWorm.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Fly/Fly.tscn" type="PackedScene" id=9]
 [ext_resource path="res://VictoryWorm/VictoryWorm.tscn" type="PackedScene" id=10]
 [ext_resource path="res://InvisibleStructure/InvisibleStructure.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Checkpoint/Checkpoint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -95,6 +96,20 @@ tile_data = PoolIntArray( -589777, 11, 0, -589776, 11, 0, -589775, 11, 0, -58977
 "deadly",
 ] instance=ExtResource( 11 )]
 tile_data = PoolIntArray( -458666, 11, 0, -393130, 22, 0, -327596, 1073741835, 0, -327595, 1073741835, 0, -327594, 1073741835, 0, -327593, 1073741835, 0, -327592, 1073741835, 0, -327591, 1073741835, 0 )
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 12 )]
+position = Vector2( 3118.62, -453.396 )
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 12 )]
+position = Vector2( 5086.42, 35.9751 )
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource( 12 )]
+position = Vector2( 6419.22, 175.824 )
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource( 12 )]
+position = Vector2( -899.706, 175.678 )
 
 [node name="Other" type="Node2D" parent="." groups=[
 "deadly",
@@ -229,9 +244,8 @@ position = Vector2( -924.603, 157.794 )
 [connection signal="state_changed" from="Other/Group4/Lever3" to="Other/Group4/Door3" method="_set_state"]
 [connection signal="state_changed" from="Other/Group4/Lever4" to="Other/Group4/Lever3" method="_set_state"]
 [connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door3" method="_set_state"]
-[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door2" method="_set_state"]
+[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Other/Group5/Lever2" to="Other/Group5/Lever" method="_set_state"]
-[connection signal="death" from="Player" to="." method="_on_Player_death"]
 [connection signal="victory" from="Player" to="." method="_on_Player_victory"]
