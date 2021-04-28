@@ -5,7 +5,7 @@ var shown := false
 func _ready() -> void:
 	pass
 
-func discover() -> void:
+func trigger() -> void:
 	if shown:
 		return
 	shown = true

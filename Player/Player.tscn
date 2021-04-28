@@ -218,4 +218,5 @@ shape = SubResource( 7 )
 position = Vector2( -0.938141, -0.249161 )
 shape = SubResource( 8 )
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

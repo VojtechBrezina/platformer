@@ -9,6 +9,7 @@ height = 23.2173
 
 [node name="Lever" type="Area2D" groups=[
 "new_game",
+"trigger",
 ]]
 script = ExtResource( 1 )
 

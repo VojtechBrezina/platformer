@@ -57,5 +57,12 @@ func _on_Area2D_body_entered(body: Node) -> void:
 		emit_signal('death')
 	if body.is_in_group('victory'):
 		emit_signal('victory')
-	if body.is_in_group('invisible'):
-		body.discover()
+	if body.is_in_group('trigger'):
+		body.trigger()
+
+
+
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if area.is_in_group('trigger'):
+		area.trigger()

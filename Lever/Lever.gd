@@ -17,9 +17,16 @@ func _set_state(s: bool) -> void:
 		state = s
 		$Sprite.region_rect = SPRITE_REGIONS[state]
 
+func _set_state_safe(s: bool) -> void:
+	if s != state:
+		state = s
+		$Sprite.region_rect = SPRITE_REGIONS[state]
+
 func _get_state() -> bool:
 	return state
 
+func trigger() -> void:
+	_set_state(!state)
 
 func new_game() -> void:
 	_set_state(false)
