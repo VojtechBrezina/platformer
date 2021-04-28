@@ -61,7 +61,9 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[node name="UI" type="MarginContainer"]
+[node name="UI" type="MarginContainer" groups=[
+"checkpoint",
+]]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -87,6 +89,25 @@ render_target_update_mode = 3
 
 [node name="Game" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="TimeLabel" type="Label" parent="MarginContainer"]
+margin_left = 815.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 46.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+text = "00:00:00.000"
+align = 2
+
 [node name="HUDContainer" type="MarginContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -95,16 +116,14 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="TimeLabel" type="Label" parent="HUDContainer"]
-margin_left = 810.0
+[node name="PauseButton" type="Button" parent="HUDContainer"]
+margin_left = 10.0
 margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 51.0
-size_flags_horizontal = 8
+margin_right = 165.0
+margin_bottom = 54.0
+size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
-text = "00:00:00.000"
-align = 2
+text = "Pause [P]"
 
 [node name="VersionLabel" type="Label" parent="HUDContainer"]
 margin_left = 10.0
@@ -113,51 +132,7 @@ margin_right = 100.0
 margin_bottom = 590.0
 size_flags_horizontal = 0
 size_flags_vertical = 12
-text = "v0.1.8"
-
-[node name="RestartButton" type="Button" parent="HUDContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 185.0
-margin_bottom = 54.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Restart [R]"
-
-[node name="HBoxContainer" type="VBoxContainer" parent="HUDContainer"]
-margin_left = 711.0
-margin_top = 501.0
-margin_right = 1014.0
-margin_bottom = 590.0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-custom_constants/separation = 5
-
-[node name="ModeLabel" type="Label" parent="HUDContainer/HBoxContainer"]
-margin_right = 303.0
-margin_bottom = 40.0
-text = "gamemode: CHAD"
-
-[node name="ModeButton" type="Button" parent="HUDContainer/HBoxContainer"]
-margin_left = 48.0
-margin_top = 45.0
-margin_right = 255.0
-margin_bottom = 89.0
-size_flags_horizontal = 4
-text = "[C] to toggle"
-
-[node name="VictoryLabel" type="Label" parent="HUDContainer"]
-visible = false
-margin_left = 445.0
-margin_top = 280.0
-margin_right = 579.0
-margin_bottom = 320.0
-size_flags_horizontal = 4
-text = "U WIN :)"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "v0.1.9"
 
 [node name="HideTimer" type="Timer" parent="HUDContainer"]
 wait_time = 3.0
@@ -168,8 +143,67 @@ autostart = true
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 
-[connection signal="victory" from="ViewportContainer/Viewport/Game" to="." method="_on_Game_victory"]
-[connection signal="pressed" from="HUDContainer/RestartButton" to="ViewportContainer/Viewport/Game" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="HUDContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="HUDContainer/HBoxContainer/ModeButton" to="." method="toggle_checkpoints"]
+[node name="PausePanel" type="PanelContainer" parent="."]
+pause_mode = 2
+margin_left = 252.0
+margin_top = 134.0
+margin_right = 772.0
+margin_bottom = 465.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 326.0
+
+[node name="HeaderLabel" type="Label" parent="PausePanel/VBoxContainer"]
+margin_left = 188.0
+margin_right = 322.0
+margin_bottom = 40.0
+size_flags_horizontal = 4
+text = "U WIN :)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BestLabel" type="Label" parent="PausePanel/VBoxContainer"]
+margin_top = 44.0
+margin_right = 510.0
+margin_bottom = 129.0
+custom_fonts/font = ExtResource( 4 )
+text = "BEST CHAD TIME:   00:00:00.000
+BEST VIRGIN TIME: 00:00:00.000"
+
+[node name="ModeButton" type="Button" parent="PausePanel/VBoxContainer"]
+margin_top = 133.0
+margin_right = 510.0
+margin_bottom = 177.0
+text = "Game mode: ..."
+
+[node name="InstantDeathButton" type="Button" parent="PausePanel/VBoxContainer"]
+margin_top = 181.0
+margin_right = 510.0
+margin_bottom = 225.0
+text = "Death: ..."
+
+[node name="RestartButton" type="Button" parent="PausePanel/VBoxContainer"]
+margin_top = 229.0
+margin_right = 510.0
+margin_bottom = 273.0
+text = "Restart [R]"
+
+[node name="ResumeButton" type="Button" parent="PausePanel/VBoxContainer"]
+margin_top = 277.0
+margin_right = 510.0
+margin_bottom = 321.0
+text = "Resume [P]"
+
+[connection signal="pressed" from="HUDContainer/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="timeout" from="HUDContainer/HideTimer" to="." method="_on_HideTimer_timeout"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/ModeButton" to="." method="_on_ModeButton_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/InstantDeathButton" to="." method="_on_InstantDeathButton_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]

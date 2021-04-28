@@ -12,8 +12,6 @@ var last_direction := 'right'
 onready var default_position := position
 onready var checkpoint_position := default_position
 
-signal victory
-
 
 func _ready() -> void:
 	animation_player.play('idle_right')
@@ -55,12 +53,12 @@ func new_game() -> void:
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group('deadly'):
-		if checkpoint_position == default_position:
-			get_tree().call_group('new_game', 'new_game')
-		else:
+		velocity = Vector2(0, 0)
+		Global.die()
+		if Global.checkpoints:
 			position = checkpoint_position
 	if body.is_in_group('victory'):
-		emit_signal('victory')
+		Global.win()
 	if body.is_in_group('trigger'):
 		body.trigger()
 

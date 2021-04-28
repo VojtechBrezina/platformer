@@ -1,23 +1,28 @@
 extends MarginContainer
 
-var checkpoints := false
 var mode_names := {
 	true: 'VIRGIN',
 	false: 'CHAD'
 }
 
+var instant_death_text := {
+	true: 'INSTANT',
+	false: 'PAUSE'
+}
+
 func _ready() -> void:
-	$HUDContainer/HBoxContainer/ModeLabel.text = 'Game mode: %s' % mode_names[checkpoints]
-	get_tree().call_deferred('call_group', 'checkpoint', 'set_enabled', checkpoints)
+	$PausePanel.hide()
+	Global.connect('pause_changed', self, '_on_pause_changed')
+	Global.connect('mode_changed', self, '_on_mode_changed')
+	Global.connect('pause_header', self, '_on_pause_header')
+	Global.connect('stats', self, '_on_stats')
+	$PausePanel/VBoxContainer/ModeButton.set_deferred('text', 'Game mode: %s' % mode_names[Global.checkpoints])
+	$PausePanel/VBoxContainer/InstantDeathButton.set_deferred('text', 'Death: %s' % instant_death_text[Global.instant_death])
 
 func _process(_delta: float) -> void:
-	$HUDContainer/TimeLabel.text = _format_time($ViewportContainer/Viewport/Game.time())
+	$MarginContainer/TimeLabel.text = Global.display_time()
 
-func _input(event) -> void:
-	if event.is_action_pressed('restart'):
-		$HUDContainer/RestartButton.emit_signal('pressed')
-	if event.is_action_pressed('change_mode'):
-		$HUDContainer/HBoxContainer/ModeButton.emit_signal('pressed')
+func _input(event):
 	if event is InputEventMouseMotion:
 		if (event as InputEventMouseMotion).speed.length() >= 500:
 			if not $HUDContainer.visible:
@@ -25,30 +30,36 @@ func _input(event) -> void:
 				$HUDContainer/HideTimer.start()
 
 
-func _on_Game_victory() -> void:
-	$HUDContainer/VictoryLabel.show()
-
-func toggle_checkpoints():
-	$HUDContainer/RestartButton.emit_signal('pressed')
-	checkpoints = not checkpoints
-	$HUDContainer/HBoxContainer/ModeLabel.text = 'Game mode: %s' % mode_names[checkpoints]
-	get_tree().call_group('checkpoint', 'set_enabled', checkpoints)
-
 func _on_RestartButton_pressed() -> void:
-	$HUDContainer/VictoryLabel.hide()
-	get_tree().paused = false
-
-func _format_time(time: int) -> String:
-	var msec := '%03d' % (time % 1000)
-	time /= 1000
-	var sec := '%02d' % (time % 60)
-	time /= 60
-	var minutes := '%02d' % (time % 60)
-	time /= 60
-	var hours := '%02d' % (time)
-
-	return hours + ':' + minutes + ':' + sec + '.' + msec
+	Global.new_game()
 
 
 func _on_HideTimer_timeout() -> void:
 	$HUDContainer/AnimationPlayer.play('fade_out')
+
+
+func _on_PauseButton_pressed() -> void:
+	Global.toggle_pause()
+
+func _on_pause_changed(p: bool) -> void:
+	$PausePanel.visible = p
+
+func _on_ResumeButton_pressed() -> void:
+	Global.toggle_pause()
+
+func _on_mode_changed(m: bool) -> void:
+	$PausePanel/VBoxContainer/ModeButton.text = 'Game mode: %s' % mode_names[m]
+
+func _on_ModeButton_pressed() -> void:
+	Global.toggle_checkpoints()
+
+
+func _on_InstantDeathButton_pressed() -> void:
+	Global.instant_death = not Global.instant_death
+	$PausePanel/VBoxContainer/InstantDeathButton.text = 'Death: %s' % instant_death_text[Global.instant_death]
+
+func _on_pause_header(h: String) -> void:
+	$PausePanel/VBoxContainer/HeaderLabel.text = h
+
+func _on_stats(s: String) -> void:
+	$PausePanel/VBoxContainer/BestLabel.text = s
