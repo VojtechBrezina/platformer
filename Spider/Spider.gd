@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var animation_player := $AnimationPlayer
 
-const WALK_SPEED := 300
+const WALK_SPEED := 400
 const GRAVITY := 50
 const JUMP_HEIGHT := 20
 var velocity := Vector2(0, 0)
