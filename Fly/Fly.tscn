@@ -3,9 +3,6 @@
 [ext_resource path="res://assets/Extra animations and enemies/Spritesheets/enemies.png" type="Texture" id=1]
 [ext_resource path="res://Fly/Fly.gd" type="Script" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 28.7991
-
 [sub_resource type="Animation" id=2]
 resource_name = "fly"
 length = 0.2
@@ -23,6 +20,9 @@ tracks/0/keys = {
 "values": [ Rect2( 262, 114, 57, 45 ), Rect2( 71, 333, 65, 39 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 28.7991
+
 [node name="Fly" type="PathFollow2D" groups=[
 "new_game",
 ]]
@@ -35,13 +35,6 @@ rect = Rect2( -1000, -1000, 2000, 2000 )
 process_parent = true
 physics_process_parent = true
 
-[node name="Body" type="StaticBody2D" parent="." groups=[
-"deadly",
-]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
@@ -49,3 +42,12 @@ region_rect = Rect2( 71, 333, 65, 39 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/fly = SubResource( 2 )
+
+[node name="Body" type="StaticBody2D" parent="." groups=[
+"deadly",
+]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 1 )
