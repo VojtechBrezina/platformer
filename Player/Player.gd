@@ -18,6 +18,7 @@ onready var checkpoint_position := default_position
 func _ready() -> void:
 	animation_player.play('idle')
 	get_viewport().connect('size_changed', self, '_resize')
+	call_deferred('_resize')
 
 
 func _resize() -> void:
