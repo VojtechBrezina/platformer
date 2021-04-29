@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/Base pack/Items/items_spritesheet.png" type="Texture" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0.247101, 69.7057, 11.6336, 36.5508, 23.0201, 69.3708, 34.7416, 36.5508, 46.7979, 68.701, 58.1844, 35.2112, 69.2361, 68.701 )
+points = PoolVector2Array( 4, 70, 12, 37, 23, 69, 35, 37, 47, 69, 58, 35, 65, 70 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 70, 0, 70, 70, 0, 70 )

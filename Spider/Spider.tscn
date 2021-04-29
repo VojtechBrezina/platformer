@@ -29,6 +29,12 @@ extents = Vector2( 34.3335, 23.8791 )
 ]]
 script = ExtResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+rect = Rect2( -1000, -1000, 2000, 2000 )
+process_parent = true
+physics_process_parent = true
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true

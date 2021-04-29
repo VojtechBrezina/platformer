@@ -12,10 +12,11 @@ var instant_death_text := {
 
 func _ready() -> void:
 	$PausePanel.hide()
-	Global.connect('pause_changed', self, '_on_pause_changed')
-	Global.connect('mode_changed', self, '_on_mode_changed')
-	Global.connect('pause_header', self, '_on_pause_header')
-	Global.connect('stats', self, '_on_stats')
+	var _tmp : int
+	_tmp = Global.connect('pause_changed', self, '_on_pause_changed')
+	_tmp = Global.connect('mode_changed', self, '_on_mode_changed')
+	_tmp = Global.connect('pause_header', self, '_on_pause_header')
+	_tmp = Global.connect('stats', self, '_on_stats')
 	$PausePanel/VBoxContainer/ModeButton.set_deferred('text', 'Game mode: %s' % mode_names[Global.checkpoints])
 	$PausePanel/VBoxContainer/InstantDeathButton.set_deferred('text', 'Death: %s' % instant_death_text[Global.instant_death])
 

@@ -29,6 +29,12 @@ tracks/0/keys = {
 rotate = false
 script = ExtResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+rect = Rect2( -1000, -1000, 2000, 2000 )
+process_parent = true
+physics_process_parent = true
+
 [node name="Body" type="StaticBody2D" parent="." groups=[
 "deadly",
 ]]

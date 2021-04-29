@@ -128,11 +128,11 @@ text = "Pause [P]"
 [node name="VersionLabel" type="Label" parent="HUDContainer"]
 margin_left = 10.0
 margin_top = 550.0
-margin_right = 100.0
+margin_right = 114.0
 margin_bottom = 590.0
 size_flags_horizontal = 0
 size_flags_vertical = 12
-text = "v0.1.9"
+text = "v0.1.10"
 
 [node name="HideTimer" type="Timer" parent="HUDContainer"]
 wait_time = 3.0
