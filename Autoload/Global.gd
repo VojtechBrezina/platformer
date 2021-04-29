@@ -19,9 +19,7 @@ signal stats(s)
 func _ready() -> void:
 	pause_mode = PAUSE_MODE_PROCESS
 
-	call_deferred('emit_signal', 'mode_changed', checkpoints)
 	call_deferred('update_stats')
-	get_tree().call_group('checkpoint', 'set_enabled', checkpoints)
 	call_deferred('set_pause', true)
 	call_deferred('new_game')
 
@@ -41,6 +39,10 @@ func _ready() -> void:
 		best_time_checkpoints = data['best_time_checkpoints'] as int
 		checkpoints = data['checkpoints'] as bool
 		instant_death = data['instant_death'] as bool
+	
+	
+	get_tree().call_deferred('call_group', 'checkpoint', 'set_enabled', checkpoints)
+	call_deferred('emit_signal', 'mode_changed', checkpoints)
 
 func _exit_tree() -> void:
 	var file := File.new()
