@@ -37,7 +37,7 @@ func _ready() -> void:
 				best_time_checkpoints = data['best_time_checkpoints'] as int
 				checkpoints = data['checkpoints'] as bool
 				instant_death = data['instant_death'] as bool
-				
+
 	get_tree().call_deferred('call_group', 'checkpoint', 'set_enabled', checkpoints)
 	call_deferred('emit_signal', 'mode_changed', checkpoints)
 
@@ -102,6 +102,8 @@ func set_pause(p: bool) -> void:
 			new_game()
 		else:
 			start_time += time() - pause_start_time
+	if OS.get_name() == 'HTML5':
+		_exit_tree()
 	emit_signal('pause_header', 'PAUSED')
 	emit_signal('pause_changed', get_tree().paused)
 

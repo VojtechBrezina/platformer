@@ -69,5 +69,8 @@ duck={
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 batching/precision/uv_contract=true
+environment/default_clear_color=Color( 0.431373, 0.431373, 0.431373, 1 )
 environment/default_environment="res://default_env.tres"

@@ -73,21 +73,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-pause_mode = 1
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
+ratio = 2.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="AspectRatioContainer"]
+pause_mode = 1
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1024, 600 )
-size_override_stretch = true
+[node name="Viewport" type="Viewport" parent="AspectRatioContainer/ViewportContainer"]
+size = Vector2( 1024, 512 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Game" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
+[node name="Game" parent="AspectRatioContainer/ViewportContainer/Viewport" instance=ExtResource( 3 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1024.0
@@ -132,7 +137,7 @@ margin_right = 111.0
 margin_bottom = 590.0
 size_flags_horizontal = 0
 size_flags_vertical = 12
-text = "v0.1.12"
+text = "v0.1.13"
 
 [node name="HideTimer" type="Timer" parent="HUDContainer"]
 wait_time = 3.0

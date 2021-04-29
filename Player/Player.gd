@@ -17,7 +17,11 @@ onready var checkpoint_position := default_position
 
 func _ready() -> void:
 	animation_player.play('idle')
+	get_viewport().connect('size_changed', self, '_resize')
 
+
+func _resize() -> void:
+	$Camera2D.zoom = Vector2(1, 1) * (2100 / $Camera2D.get_viewport().size.x)
 
 func _physics_process(_delta: float) -> void:
 	var idle := true
