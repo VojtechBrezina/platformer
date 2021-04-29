@@ -172,8 +172,8 @@ radius = 32.4075
 height = 28.0025
 
 [sub_resource type="CapsuleShape2D" id=8]
-radius = 35.0295
-height = 25.755
+radius = 44.5903
+height = 11.3918
 
 [node name="Player" type="KinematicBody2D" groups=[
 "new_game",
@@ -215,7 +215,6 @@ shape = SubResource( 7 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.938141, -0.249161 )
 shape = SubResource( 8 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

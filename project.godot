@@ -54,10 +54,6 @@ pause={
  ]
 }
 
-[physics]
-
-common/enable_pause_aware_picking=true
-
 [rendering]
 
 batching/precision/uv_contract=true

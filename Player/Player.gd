@@ -43,28 +43,30 @@ func _physics_process(_delta: float) -> void:
 		if velocity.x != 0:
 			last_direction = ('right' if velocity.x > 0 else 'left')
 		animation_player.play(('walk_' if (is_on_floor() or is_on_wall()) else 'jump_') + last_direction)
-		
-			
 	
 func new_game() -> void:
 	position = default_position
 	checkpoint_position = default_position
 
 
-func _on_Area2D_body_entered(body: Node) -> void:
-	if body.is_in_group('deadly'):
+func check_colision(node: Node) -> void:
+	if node.is_in_group('deadly'):
 		velocity = Vector2(0, 0)
 		Global.die()
 		if Global.checkpoints:
 			position = checkpoint_position
-	if body.is_in_group('victory'):
+	if node.is_in_group('victory'):
 		Global.win()
-	if body.is_in_group('trigger'):
-		body.trigger()
+	if node.is_in_group('trigger'):
+		node.trigger()
+		if node.is_in_group('checkpoint'):
+			checkpoint_position = node.position
+
+
+func _on_Area2D_body_entered(body: Node) -> void:
+	check_colision(body)
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	if area.is_in_group('trigger'):
-		area.trigger()
-		if area.is_in_group('checkpoint'):
-			checkpoint_position = area.position
+	check_colision(area)
+		

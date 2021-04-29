@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 	velocity.y += GRAVITY
 
 	velocity = move_and_slide(velocity, Vector2.UP, false, 10)
-	if is_on_wall() and not on_wall:
+	if abs(velocity.x) == 0 and not on_wall:
 		dir *= -1
 		$Sprite.flip_h = dir == 1
 		on_wall = true

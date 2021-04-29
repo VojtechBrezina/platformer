@@ -21,7 +21,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 34.3335, 23.8791 )
+extents = Vector2( 37.524, 25.8748 )
 
 [node name="Spider" type="KinematicBody2D" groups=[
 "deadly",
