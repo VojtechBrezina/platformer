@@ -1,5 +1,7 @@
 extends PathFollow2D
 
+onready var default_offset := offset
+
 var p_pos := Vector2()
 
 func _ready() -> void:
@@ -12,4 +14,4 @@ func _physics_process(delta: float) -> void:
 
 
 func new_game() -> void:
-	offset = 0
+	offset = default_offset
