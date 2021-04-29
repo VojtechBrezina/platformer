@@ -32,6 +32,7 @@ func _input(event):
 
 func _on_RestartButton_pressed() -> void:
 	Global.new_game()
+	Global.set_pause(false)
 
 
 func _on_HideTimer_timeout() -> void:
@@ -62,4 +63,10 @@ func _on_pause_header(h: String) -> void:
 	$PausePanel/VBoxContainer/HeaderLabel.text = h
 
 func _on_stats(s: String) -> void:
-	$PausePanel/VBoxContainer/BestLabel.text = s
+	$PausePanel/VBoxContainer/HBoxContainer/BestLabel.text = s
+
+
+func _on_ClearStatsButton_pressed() -> void:
+	Global.best_time_checkpoints = -1
+	Global.best_time_deathless = -1
+	Global.update_stats()

@@ -37,7 +37,9 @@ func _ready() -> void:
 		instant_death = data['instant_death'] as bool
 	
 	call_deferred('emit_signal', 'mode_changed', checkpoints)
+	call_deferred('update_stats')
 	get_tree().call_group('checkpoint', 'set_enabled', checkpoints)
+	call_deferred('set_pause', true)
 	call_deferred('new_game')
 
 func _exit_tree() -> void:
@@ -57,10 +59,14 @@ func _exit_tree() -> void:
 func _input(event) -> void:
 	if event.is_action_pressed('restart'):
 		new_game()
+		set_pause(false)
 	if event.is_action_pressed('pause'):
 		toggle_pause()
 	
 func format_time(time: int) -> String:
+	if time == -1:
+		return '99:99:99.999'
+
 	var msec := '%03d' % (time % 1000)
 	time /= 1000
 	var sec := '%02d' % (time % 60)
@@ -126,7 +132,7 @@ func win() -> void:
 		if best_time_deathless == -1:
 			best_time_deathless = victory_time
 		best_time_deathless = min(best_time_deathless, victory_time) as int
-	emit_signal('stats', 'BEST CHAD TIME:   ' + format_time(best_time_deathless) + '\nBEST VIRGIN TIME: ' + format_time(best_time_checkpoints))
+	update_stats()
 	set_pause(true)
 	emit_signal('pause_header', 'U WIN LOL')
 
@@ -135,3 +141,6 @@ func die() -> void:
 		new_game()
 	Global.set_pause(not Global.instant_death)
 	emit_signal('pause_header', 'U DEAD MATE')
+
+func update_stats():
+	emit_signal('stats', 'BEST CHAD TIME:   ' + format_time(best_time_deathless) + '\nBEST VIRGIN TIME: ' + format_time(best_time_checkpoints))
