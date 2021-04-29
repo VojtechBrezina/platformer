@@ -47,7 +47,7 @@ anims/fly = SubResource( 2 )
 "deadly",
 ]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 1 )

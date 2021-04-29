@@ -25,22 +25,19 @@ func _ready() -> void:
 
 	var file := File.new()
 	var err := file.open('user://data.json', File.READ)
-	if err:
-		return
-	var parse_result := JSON.parse(file.get_as_text())
-	file.close()
-	if parse_result.error or typeof(parse_result.result) != TYPE_DICTIONARY:
-		return
-	var data := (parse_result.result as Dictionary)
-	var version := (data['file_version'] as int)
+	if not err:
+		var parse_result := JSON.parse(file.get_as_text())
+		file.close()
+		if not (parse_result.error or typeof(parse_result.result) != TYPE_DICTIONARY):
+			var data := (parse_result.result as Dictionary)
+			var version := (data['file_version'] as int)
 
-	if version >= 0:
-		best_time_deathless = data['best_time_deathless'] as int
-		best_time_checkpoints = data['best_time_checkpoints'] as int
-		checkpoints = data['checkpoints'] as bool
-		instant_death = data['instant_death'] as bool
-	
-	
+			if version >= 0:
+				best_time_deathless = data['best_time_deathless'] as int
+				best_time_checkpoints = data['best_time_checkpoints'] as int
+				checkpoints = data['checkpoints'] as bool
+				instant_death = data['instant_death'] as bool
+				
 	get_tree().call_deferred('call_group', 'checkpoint', 'set_enabled', checkpoints)
 	call_deferred('emit_signal', 'mode_changed', checkpoints)
 

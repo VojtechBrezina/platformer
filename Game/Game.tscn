@@ -25,12 +25,12 @@ _data = {
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 7420, -1050, 0, 0, 0, 0, 6720, -1050, 0, 0, 0, 0, 6090, -1050, 0, 0, 0, 0, 7420, -1050 )
+"points": PoolVector2Array( 0, 0, 0, 0, 7420, -1085, 0, 0, 0, 0, 6720, -1085, 0, 0, 0, 0, 6090, -1085, 0, 0, 0, 0, 7420, -1085 )
 }
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 7420, -1190, 0, 0, 0, 0, 6090, -1190, 0, 0, 0, 0, 6720, -1190, 0, 0, 0, 0, 7420, -1190 )
+"points": PoolVector2Array( 0, 0, 0, 0, 7420, -1155, 0, 0, 0, 0, 6090, -1155, 0, 0, 0, 0, 6720, -1155, 0, 0, 0, 0, 7420, -1155 )
 }
 
 [node name="Game" type="Node2D" groups=[
@@ -254,20 +254,20 @@ position = Vector2( 6137.68, 183.375 )
 curve = SubResource( 3 )
 
 [node name="Fly" parent="Enemies/Path2D3" instance=ExtResource( 9 )]
-position = Vector2( 6101.55, -1050 )
+position = Vector2( 6101.55, -1085 )
 offset = 1319.84
 
 [node name="Path2D4" type="Path2D" parent="Enemies"]
 curve = SubResource( 4 )
 
 [node name="Fly" parent="Enemies/Path2D4" instance=ExtResource( 9 )]
-position = Vector2( 7420, -1190 )
+position = Vector2( 7420, -1155 )
 
 [node name="VictoryWorm" parent="." instance=ExtResource( 10 )]
-position = Vector2( 7776.09, 127.254 )
+position = Vector2( 5983.15, -493.482 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 5922.99, -1027.34 )
+position = Vector2( -923.643, 87.3416 )
 z_index = 10
 
 [connection signal="state_changed" from="Other/Group1/Lever" to="Other/Group1/Door" method="_set_state"]
@@ -277,8 +277,8 @@ z_index = 10
 [connection signal="state_changed" from="Other/Group4/Lever2" to="Other/Group4/Door2" method="_set_state"]
 [connection signal="state_changed" from="Other/Group4/Lever3" to="Other/Group4/Door3" method="_set_state"]
 [connection signal="state_changed" from="Other/Group4/Lever4" to="Other/Group4/Lever3" method="_set_state"]
-[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door2" method="_set_state"]
-[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door3" method="_set_state"]
 [connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door" method="_set_state"]
+[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Door3" method="_set_state"]
+[connection signal="state_changed" from="Other/Group5/Lever" to="Other/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Other/Group5/Lever2" to="Other/Group5/Lever" method="_set_state"]
