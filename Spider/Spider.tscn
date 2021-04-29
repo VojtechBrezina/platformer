@@ -27,6 +27,8 @@ extents = Vector2( 37.524, 25.8748 )
 "deadly",
 "new_game",
 ]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
