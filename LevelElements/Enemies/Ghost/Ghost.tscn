@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://LevelElements/Enemies/Ghost/Ghost.gd" type="Script" id=1]
+[ext_resource path="res://assets/Extra animations and enemies/Spritesheets/enemies.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fly"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 528, 147, 51, 73 ), Rect2( 371, 386, 51, 73 ) ]
+}
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -25.1478, -15.9832, -22.8353, -28.3864, -14.2161, -34.9034, 0.709801, -37.0056, 12.9028, -35.534, 23.2038, -26.4944, 26.1469, -18.7161, 25.9367, 2.51653, 25.0958, 23.1185, 16.6868, 35.1013, 13.5335, 35.5217, 7.01653, 27.9536, 1.97115, 36.1524, -2.02311, 36.1524, -7.27872, 28.7945, -13.3752, 36.1524, -16.5286, 36.3626, -25.1478, 22.9083, -24.8989, -16.9477 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 25.5693
+height = 25.9308
+
+[node name="Ghost" type="Sprite" groups=[
+"follow",
+"new_game",
+"revivable",
+"save",
+]]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 371, 386, 51, 73 )
+script = ExtResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+rect = Rect2( -1000, -1000, 2000, 2000 )
+process_parent = true
+physics_process_parent = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fly = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+modulate = Color( 1, 1, 1, 0.196078 )
+occluder = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"deadly",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

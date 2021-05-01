@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LevelElements/HiddenTrigger/HiddenTrigger.gd" type="Script" id=1]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( -35, 0 )
+b = Vector2( 35, 0 )
+
+[node name="HiddenTrigger" type="Area2D" groups=[
+"trigger",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

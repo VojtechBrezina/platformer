@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://LevelElements/HolyWindow/HolyWindow.gd" type="Script" id=1]
+[ext_resource path="res://assets/Buildings expansion/sheet.png" type="Texture" id=2]
+[ext_resource path="res://lights_and_backgrounds/holy_light.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 150.0
+
+[node name="HolyWindow" type="Sprite" groups=[
+"environment",
+]]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 914, 140, 61, 70 )
+script = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+rect = Rect2( -1000, -1000, 2000, 2000 )
+process_parent = true
+physics_process_parent = true
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"holy",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )

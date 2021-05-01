@@ -71,3 +71,4 @@ func _on_ClearStatsButton_pressed() -> void:
 	Global.best_time_checkpoints = -1
 	Global.best_time_deathless = -1
 	Global.update_stats()
+	
