@@ -4,14 +4,14 @@
 [ext_resource path="res://lights_and_backgrounds/light.png" type="Texture" id=2]
 [ext_resource path="res://assets/Base pack/Player/p1_spritesheet.png" type="Texture" id=3]
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 width = 1
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -50,7 +50,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 0.8 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -156,12 +156,12 @@ tracks/2/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 32.4075
-height = 28.0025
+radius = 32.0
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id=8]
-radius = 34.5
-height = 27.8579
+radius = 32.0
+height = 28.0
 
 [node name="Player" type="KinematicBody2D" groups=[
 "environment",
@@ -176,14 +176,24 @@ modulate = Color( 0.788235, 0.988235, 1, 1 )
 scale = Vector2( 50000, 50000 )
 z_index = -5
 z_as_relative = false
-texture = SubResource( 10 )
+texture = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../PlayerSprite")
-anims/duck = SubResource( 11 )
-anims/idle = SubResource( 12 )
+anims/duck = SubResource( 3 )
+anims/idle = SubResource( 4 )
 anims/jump = SubResource( 5 )
 anims/walk = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.376274, -0.249153 )
+shape = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 8 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -196,16 +206,6 @@ zoom = Vector2( 2, 2 )
 process_mode = 0
 editor_draw_limits = true
 editor_draw_drag_margin = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.376274, -0.249153 )
-shape = SubResource( 7 )
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
 z_index = 4

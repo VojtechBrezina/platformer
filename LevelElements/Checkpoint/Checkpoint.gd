@@ -26,7 +26,10 @@ func new_game() -> void:
 func set_enabled(e: bool) -> void:
 	enabled = e
 	$CollisionShape2D.disabled = not e
-	$Sprite/AnimationPlayer.play(enbled_animations[e])
+	if level:
+		$Sprite/AnimationPlayer.play('level')
+	else:
+		$Sprite/AnimationPlayer.play(enbled_animations[e])
 
 func _save() -> void:
 	Global.save_state_data[str(get_path())] = {
