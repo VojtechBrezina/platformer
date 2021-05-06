@@ -17,6 +17,7 @@ func _ready() -> void:
 	_tmp = Global.connect('mode_changed', self, '_on_mode_changed')
 	_tmp = Global.connect('pause_header', self, '_on_pause_header')
 	_tmp = Global.connect('stats', self, '_on_stats')
+	_tmp = Global.connect('progress', self, '_on_progress')
 	$PausePanel/VBoxContainer/ModeButton.set_deferred('text', 'Game mode: %s' % mode_names[Global.checkpoints])
 	$PausePanel/VBoxContainer/InstantDeathButton.set_deferred('text', 'Death: %s' % instant_death_text[Global.instant_death])
 
@@ -38,7 +39,7 @@ func _on_RestartButton_pressed() -> void:
 
 func _on_HideTimer_timeout() -> void:
 	$HUDContainer/AnimationPlayer.play('fade_out')
-
+	pass
 
 func _on_PauseButton_pressed() -> void:
 	Global.toggle_pause()
@@ -66,6 +67,8 @@ func _on_pause_header(h: String) -> void:
 func _on_stats(s: String) -> void:
 	$PausePanel/VBoxContainer/HBoxContainer/BestLabel.text = s
 
+func _on_progress(p: float) -> void:
+	$MarginContainer/ProgressLabel.text = str(floor(p * 100)) + '%'
 
 func _on_ClearStatsButton_pressed() -> void:
 	Global.best_time_checkpoints = -1

@@ -160,7 +160,7 @@ radius = 32.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id=8]
-radius = 32.0
+radius = 32.5
 height = 28.0
 
 [node name="Player" type="KinematicBody2D" groups=[

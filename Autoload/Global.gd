@@ -21,6 +21,7 @@ signal pause_changed(p)
 signal mode_changed(m)
 signal pause_header(h)
 signal stats(s)
+signal progress(p)
 
 func _ready() -> void:
 	pause_mode = PAUSE_MODE_PROCESS
@@ -69,7 +70,11 @@ func try_loading_state():
 		return
 	var data := result['data'] as Dictionary
 	for k in data.keys():
-		get_node(k).call_deferred('_load', data[k])
+		var n := get_node_or_null(k)
+		if n == null:
+			push_warning("Discarding nonexistnet node\'s state: " + k)
+		else:
+			n.call_deferred('_load', data[k])
 	last_environment = result['environment']
 	start_time = OS.get_ticks_msec() - result['time']
 	pause_start_time = result['time']

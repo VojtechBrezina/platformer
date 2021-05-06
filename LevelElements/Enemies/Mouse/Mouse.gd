@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 	velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.8)
 	if is_on_wall() and not on_wall:
 		dir *= -1
-		scale.x = -1
+		global_scale.x = -1 if dir else 1
 		on_wall = true
 		$WallTimer.start()
 		

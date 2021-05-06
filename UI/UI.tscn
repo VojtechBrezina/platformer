@@ -113,6 +113,17 @@ custom_fonts/font = ExtResource( 4 )
 text = "00:00:00.000"
 align = 2
 
+[node name="ProgressLabel" type="Label" parent="MarginContainer"]
+margin_left = 985.0
+margin_top = 554.0
+margin_right = 1019.0
+margin_bottom = 595.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "0%"
+align = 2
+
 [node name="HUDContainer" type="MarginContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -137,7 +148,7 @@ margin_right = 106.0
 margin_bottom = 590.0
 size_flags_horizontal = 0
 size_flags_vertical = 12
-text = "v0.2.2"
+text = "v0.2.3"
 
 [node name="HideTimer" type="Timer" parent="HUDContainer"]
 wait_time = 3.0

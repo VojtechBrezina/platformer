@@ -3,6 +3,8 @@ extends Area2D
 var active := false
 var enabled := false
 
+signal triggered
+
 export(String) var environment := 'outside'
 export(bool) var level := false
 
@@ -15,17 +17,21 @@ func _ready() -> void:
 	pass
 
 func trigger() -> void:
-	if not active:
+	if not active and (enabled or level):
 		active = true
 		$Sprite/AnimationPlayer.play('active_level' if level else 'active')
+		emit_signal('triggered')
 
 func new_game() -> void:
 	active = false
-	$Sprite/AnimationPlayer.play(enbled_animations[enabled])
+	if level:
+		$Sprite/AnimationPlayer.play('level')
+	else:
+		$Sprite/AnimationPlayer.play(enbled_animations[enabled])
 
 func set_enabled(e: bool) -> void:
-	enabled = e
-	$CollisionShape2D.disabled = not e
+	enabled = e or level
+	$CollisionShape2D.disabled = not enabled
 	if level:
 		$Sprite/AnimationPlayer.play('level')
 	else:

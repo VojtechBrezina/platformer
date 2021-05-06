@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://LevelElements/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LevelElements/Enemies/EnemyWorm/EnemyWorm.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://LevelElements/HiddenTrigger/HiddenTrigger.tscn" type="PackedScene" id=15]
 [ext_resource path="res://LevelElements/HolyWindow/HolyWindow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://TIleBlend/TileBlend.tscn" type="PackedScene" id=17]
+[ext_resource path="res://LoreLabel/LoreLabel.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -35,7 +36,7 @@ void fragment() {
 	);
 }"
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = 0.0
@@ -43,7 +44,7 @@ shader_param/x_scale = 1.0
 shader_param/y_offset = 0.0
 shader_param/y_scale = 0.0
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = 0.0
@@ -51,7 +52,7 @@ shader_param/x_scale = 1.0
 shader_param/y_offset = 0.0
 shader_param/y_scale = 1.0
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = -0.5
@@ -59,7 +60,7 @@ shader_param/x_scale = 1.0
 shader_param/y_offset = -0.5
 shader_param/y_scale = 1.0
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = 0.0
@@ -67,7 +68,7 @@ shader_param/x_scale = 1.0
 shader_param/y_offset = 0.0
 shader_param/y_scale = 1.0
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = 0.0
@@ -75,7 +76,7 @@ shader_param/x_scale = 1.0
 shader_param/y_offset = 0.0
 shader_param/y_scale = -1.0
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/x_offset = 0.0
@@ -83,38 +84,43 @@ shader_param/x_scale = 0.0
 shader_param/y_offset = 0.0
 shader_param/y_scale = 1.0
 
-[sub_resource type="Curve2D" id=14]
+[sub_resource type="Curve2D" id=8]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1610, -350, 0, 0, 0, 0, 2380, -350, 0, 0, 0, 0, 1960, -350, 0, 0, 0, 0, 1610, -350 )
 }
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=9]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 4200, -140, 0, 0, 0, 0, 4200, -980, 0, 0, 0, 0, 4200, -560, 0, 0, 0, 0, 4200, -140 )
 }
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=10]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 7420, -1085, 0, 0, 0, 0, 6720, -1085, 0, 0, 0, 0, 6090, -1085, 0, 0, 0, 0, 7420, -1085 )
 }
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=11]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 7420, -1155, 0, 0, 0, 0, 6090, -1155, 0, 0, 0, 0, 6720, -1155, 0, 0, 0, 0, 7420, -1155 )
 }
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=12]
 _data = {
 "points": PoolVector2Array( 57.3981, -90.7691, -57.3981, 90.7691, 9170, -350, -118.801, -4.00452, 118.801, 4.00452, 9345, -105, 32.0362, 24.0271, -32.0362, -24.0271, 9520, -350, 178.869, 45.3846, -178.869, -45.3846, 9345, -455, -10.6787, 32.0362, 10.6787, -32.0362, 9170, -700, -212.24, 4.00452, 212.24, -4.00452, 9345, -840, 12.0136, 49.3891, -12.0136, -49.3891, 9520, -1050, 186.878, -8.00904, -186.878, 8.00904, 9345, -1190, -88.0994, -89.4343, 88.0994, 89.4343, 9170, -1400, -234.932, -70.7465, 234.932, 70.7465, 9345, -1540, -117.466, -174.864, 117.466, 174.864, 9520, -1750, -136.154, -1.33484, 136.154, 1.33484, 9345, -1890, -86.7646, 188.212, 86.7646, -188.212, 9170, -1750, -240.271, 100.113, 240.271, -100.113, 9345, -1540, -105.452, 73.4162, 105.452, -73.4162, 9520, -1400, 198.891, -13.3484, -198.891, 13.3484, 9345, -1190, 2.66968, -62.7375, -2.66968, 62.7375, 9170, -1050, -221.583, -21.3574, 221.583, 21.3574, 9345, -840, -9.34388, -13.3484, 9.34388, 13.3484, 9520, -700, 177.534, -53.3936, -177.534, 53.3936, 9345, -455, 33.371, -26.6968, -33.371, 26.6968, 9170, -350 )
 }
 
-[sub_resource type="SegmentShape2D" id=6]
+[sub_resource type="SegmentShape2D" id=13]
 a = Vector2( 0, -100 )
 b = Vector2( 0, 100 )
 
-[sub_resource type="SegmentShape2D" id=7]
+[sub_resource type="SegmentShape2D" id=14]
 a = Vector2( 0, -100 )
 b = Vector2( 0, 100 )
+
+[sub_resource type="Curve2D" id=15]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -826.413, 137.049, 0, 0, 0, 0, -305.058, -340.58, 0, 0, 0, 0, 2513.16, -350.275, 0, 0, 0, 0, 2674.61, -515.09, 0, 0, 0, 0, 2954.26, -306.944, 0, 0, 0, 0, 3185.87, -525.181, 0, 0, 0, 0, 3206.05, -87.915, 0, 0, 0, 0, 3933.06, -81.5836, 0, 0, 0, 0, 4266.06, -1070.48, 0, 0, 0, 0, 4528.42, -14.3119, 0, 0, 0, 0, 5110.31, -58.0387, 0, 0, 0, 0, 5644.65, -505, 0, 0, 0, 0, 5789.76, -249.762, 0, 0, 0, 0, 6257.3, -236.308, 0, 0, 0, 0, 5964.19, 26.4469, 0, 0, 0, 0, 6492.28, 154.263, 0, 0, 0, 0, 6680.64, -158.55, 0, 0, 0, 0, 7131.36, -40.8248, 0, 0, 0, 0, 7070.81, -447.819, 0, 0, 0, 0, 5991.57, -485.214, 0, 0, 0, 0, 5947.38, -1053.26, 0, 0, 0, 0, 8604.61, -1059.99, 0, 0, 0, 0, 8618.06, -545.362, 0, 0, 0, 0, 8429.7, -541.999, 0, 0, 0, 0, 8332.16, -777.45, 0, 0, 0, 0, 8184.16, -538.635, 0, 0, 0, 0, 7965.53, -565.544, 0, 0, 0, 0, 7892, -687.029, 0, 0, 0, 0, 7562.37, -660.12, 0, 0, 0, 0, 7447.53, 49.9926, 0, 0, 0, 0, 7804.07, 60.0833, 0, 0, 0, 0, 7810.8, -202.276, 0, 0, 0, 0, 9112.98, -202.673, 0, 0, 0, 0, 9149.13, -1954.74, 0, 0, 0, 0, 7485.73, -1951.02, 0, 0, 0, 0, 7496.42, -2168.4, 0, 0, 0, 0, 8463.08, -2358.17, 0, 0, 0, 0, 7478.6, -2489.13, 0, 0, 0, 0, 7704.94, -3278.13, 0, 0, 0, 0, 6929.81, -3330.13 )
+}
 
 [node name="Game" type="Node2D" groups=[
 "environment",
@@ -290,24 +296,24 @@ tile_data = PoolIntArray( -2883466, 11, 0 )
 [node name="Blends" type="Node2D" parent="Map"]
 
 [node name="TileBlendHorizontal" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 8 )
+material = SubResource( 2 )
 
 [node name="TileBlendDiagonal1" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 9 )
+material = SubResource( 3 )
 tile_data = PoolIntArray( -1638260, 15, 0, -1572726, 15, 0, -1441666, 25, 0, -1310597, 15, 0, -1245062, 15, 0 )
 
 [node name="TileBlendDiagonal2" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 10 )
+material = SubResource( 4 )
 tile_data = PoolIntArray( -1703796, 15, 0, -1638262, 15, 0, -1572737, 25, 0, -1441667, 25, 0, -1376133, 15, 0, -1310598, 15, 0 )
 
 [node name="TileBlendDiagonal3" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 11 )
+material = SubResource( 5 )
 
 [node name="TileBlendDiagonal4" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 12 )
+material = SubResource( 6 )
 
 [node name="TileBlendVertical" parent="Map/Blends" instance=ExtResource( 17 )]
-material = SubResource( 13 )
+material = SubResource( 7 )
 tile_data = PoolIntArray( -1703795, 15, 0, -1703794, 15, 0, -1638261, 15, 0, -1572736, 15, 0, -1376132, 15, 0, -1179525, 15, 0 )
 
 [node name="Checkpoints" type="Node2D" parent="."]
@@ -524,7 +530,7 @@ position = Vector2( 1853.34, -208.542 )
 position = Vector2( 2133.95, -211.91 )
 
 [node name="Path2D" type="Path2D" parent="Enemies/Level1"]
-curve = SubResource( 14 )
+curve = SubResource( 8 )
 
 [node name="Fly" parent="Enemies/Level1/Path2D" instance=ExtResource( 9 )]
 position = Vector2( 1610, -350 )
@@ -533,7 +539,7 @@ position = Vector2( 1610, -350 )
 position = Vector2( 3520.42, -25.0892 )
 
 [node name="Path2D2" type="Path2D" parent="Enemies/Level1"]
-curve = SubResource( 2 )
+curve = SubResource( 9 )
 
 [node name="Fly" parent="Enemies/Level1/Path2D2" instance=ExtResource( 9 )]
 position = Vector2( 4200, -626.121 )
@@ -556,14 +562,14 @@ z_index = -1
 position = Vector2( 6137.68, 183.375 )
 
 [node name="Path2D3" type="Path2D" parent="Enemies/Level1"]
-curve = SubResource( 3 )
+curve = SubResource( 10 )
 
 [node name="Fly" parent="Enemies/Level1/Path2D3" instance=ExtResource( 9 )]
 position = Vector2( 6101.55, -1085 )
 offset = 1319.84
 
 [node name="Path2D4" type="Path2D" parent="Enemies/Level1"]
-curve = SubResource( 4 )
+curve = SubResource( 11 )
 
 [node name="Fly" parent="Enemies/Level1/Path2D4" instance=ExtResource( 9 )]
 position = Vector2( 6727.03, -1155 )
@@ -641,7 +647,7 @@ rotation = -3.14159
 z_index = -1
 
 [node name="Path2D5" type="Path2D" parent="Enemies/Level1"]
-curve = SubResource( 5 )
+curve = SubResource( 12 )
 
 [node name="Fly" parent="Enemies/Level1/Path2D5" instance=ExtResource( 9 )]
 position = Vector2( 9327.89, -459.871 )
@@ -692,10 +698,6 @@ position = Vector2( 7179.24, -3454.25 )
 [node name="Ghost2" parent="Enemies/Level2/Ghost2" instance=ExtResource( 14 )]
 position = Vector2( 7734.24, -3457.05 )
 
-[node name="Ghost3" parent="Enemies/Level2/Ghost2" instance=ExtResource( 14 )]
-position = Vector2( 4427.2, -1837.3 )
-scale = Vector2( 10, 10 )
-
 [node name="HiddenTrigger" parent="Enemies/Level2/Ghost2" instance=ExtResource( 15 )]
 position = Vector2( 7785.37, -2444.2 )
 rotation = 1.5708
@@ -717,7 +719,7 @@ scale = Vector2( 1, 6.41307 )
 z_index = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnvironmentTriggers/Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 13 )
 
 [node name="Area2D2" type="Area2D" parent="EnvironmentTriggers" groups=[
 "outside_environment",
@@ -728,17 +730,249 @@ scale = Vector2( 1, 6.5925 )
 z_index = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnvironmentTriggers/Area2D2"]
-shape = SubResource( 7 )
+shape = SubResource( 14 )
 
 [node name="VictoryWorm" parent="." instance=ExtResource( 10 )]
 position = Vector2( 6827.16, -3321.94 )
 rotation = 1.5708
 z_index = -1
 
+[node name="Lore" type="Node2D" parent="."]
+
+[node name="Label1" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label1" instance=ExtResource( 18 )]
+margin_left = -951.316
+margin_top = -363.808
+margin_right = -193.316
+margin_bottom = -242.808
+text = "Just try pressing some buttons.
+It's not that hard."
+
+[node name="HiddenTrigger" parent="Lore/Label1" instance=ExtResource( 15 )]
+position = Vector2( -833.914, 178.032 )
+scale = Vector2( 4.04, 1 )
+
+[node name="Label2" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label2" instance=ExtResource( 18 )]
+margin_left = -358.563
+margin_top = -663.96
+margin_right = 399.437
+margin_bottom = -542.96
+text = "Let's start simple."
+
+[node name="HiddenTrigger" parent="Lore/Label2" instance=ExtResource( 15 )]
+position = Vector2( -312.85, -404.496 )
+rotation = 0.876563
+scale = Vector2( 4.34381, 1 )
+
+[node name="Label3" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label3" instance=ExtResource( 18 )]
+margin_left = 706.966
+margin_top = -514.12
+margin_right = 1464.97
+margin_bottom = -393.12
+text = "JK. This game is random."
+
+[node name="HiddenTrigger" parent="Lore/Label3" instance=ExtResource( 15 )]
+position = Vector2( 621.735, -433.864 )
+rotation = 2.30829
+scale = Vector2( 5.56031, 1 )
+
+[node name="Label4" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label4" instance=ExtResource( 18 )]
+margin_left = 1238.71
+margin_top = -13.488
+margin_right = 1996.71
+margin_bottom = 107.512
+text = "But you'll get used to it."
+
+[node name="HiddenTrigger" parent="Lore/Label4" instance=ExtResource( 15 )]
+position = Vector2( 1365.61, -221.732 )
+rotation = 3.12681
+scale = Vector2( 5.56031, 1 )
+
+[node name="Label5" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label5" instance=ExtResource( 18 )]
+margin_left = 2536.71
+margin_top = -755.488
+margin_right = 3294.71
+margin_bottom = -634.488
+text = "Yep the physics don't 
+make sense either."
+
+[node name="HiddenTrigger" parent="Lore/Label5" instance=ExtResource( 15 )]
+position = Vector2( 2691.61, -531.732 )
+rotation = 4.65248
+scale = Vector2( 3.07832, 1 )
+
+[node name="Label6" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label6" instance=ExtResource( 18 )]
+margin_left = 3256.56
+margin_top = -997.812
+margin_right = 4123.56
+margin_bottom = -876.812
+text = "The thing with 
+sequence breaks is..."
+
+[node name="HiddenTrigger" parent="Lore/Label6" instance=ExtResource( 15 )]
+position = Vector2( 3107.35, -552.521 )
+rotation = 1.55323
+scale = Vector2( 3.77872, 1.00002 )
+
+[node name="Label7" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label7" instance=ExtResource( 18 )]
+margin_left = 3313.77
+margin_top = -834.655
+margin_right = 4180.77
+margin_bottom = -713.655
+text = "I made sure they
+are not very obvoius."
+
+[node name="HiddenTrigger" parent="Lore/Label7" instance=ExtResource( 15 )]
+position = Vector2( 3566.11, -609.667 )
+rotation = -0.00405788
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label8" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label8" instance=ExtResource( 18 )]
+margin_left = 3318.26
+margin_top = -461.998
+margin_right = 4185.26
+margin_bottom = -340.998
+text = "We have some near 
+impossible parts"
+
+[node name="HiddenTrigger" parent="Lore/Label8" instance=ExtResource( 15 )]
+position = Vector2( 3220.39, -171.907 )
+rotation = -0.00405788
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label9" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label9" instance=ExtResource( 18 )]
+margin_left = 3798.21
+margin_top = 64.1518
+margin_right = 4665.21
+margin_bottom = 185.152
+text = "We have puzzles"
+
+[node name="HiddenTrigger" parent="Lore/Label9" instance=ExtResource( 15 )]
+position = Vector2( 3966.27, -285.3 )
+rotation = 1.17271
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label10" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label10" instance=ExtResource( 18 )]
+margin_left = 5627.47
+margin_top = -204.696
+margin_right = 6494.47
+margin_bottom = -83.6963
+text = "We have random traps"
+
+[node name="HiddenTrigger" parent="Lore/Label10" instance=ExtResource( 15 )]
+position = Vector2( 6126.13, -306.022 )
+rotation = -0.000437168
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label11" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label11" instance=ExtResource( 18 )]
+margin_left = 5524.12
+margin_top = 215.808
+margin_right = 6391.12
+margin_bottom = 336.808
+text = "Some more weird physics"
+
+[node name="HiddenTrigger" parent="Lore/Label11" instance=ExtResource( 15 )]
+position = Vector2( 5761.02, 52.7304 )
+rotation = -0.000437168
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label12" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label12" instance=ExtResource( 18 )]
+margin_left = 6111.46
+margin_top = -812.828
+margin_right = 6978.46
+margin_bottom = -691.828
+text = "There are oneway platforms as well"
+
+[node name="HiddenTrigger" parent="Lore/Label12" instance=ExtResource( 15 )]
+position = Vector2( 6134.06, -660.013 )
+rotation = 1.56629
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label13" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label13" instance=ExtResource( 18 )]
+margin_left = 7799.65
+margin_top = -1331.41
+margin_right = 8666.64
+margin_bottom = -1210.41
+text = "Absolute precision madness
+is another thing to expect."
+
+[node name="HiddenTrigger" parent="Lore/Label13" instance=ExtResource( 15 )]
+position = Vector2( 7656.12, -1221.24 )
+rotation = 1.56629
+scale = Vector2( 7.21819, 1.00002 )
+
+[node name="Label14" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label14" instance=ExtResource( 18 )]
+margin_left = 7130.66
+margin_top = -889.155
+margin_right = 7997.66
+margin_bottom = -706.155
+text = "Good job,
+this one is
+real hard"
+
+[node name="HiddenTrigger" parent="Lore/Label14" instance=ExtResource( 15 )]
+position = Vector2( 7494.49, -940.628 )
+rotation = 3.12927
+scale = Vector2( 3.57751, 1.00002 )
+
+[node name="Label15" type="Node2D" parent="Lore"]
+
+[node name="LoreLabel" parent="Lore/Label15" instance=ExtResource( 18 )]
+margin_left = 7925.36
+margin_top = 100.856
+margin_right = 8792.36
+margin_bottom = 283.856
+text = "And there are very few rules
+especially for platform placement."
+
+[node name="HiddenTrigger" parent="Lore/Label15" instance=ExtResource( 15 )]
+position = Vector2( 7651.63, 51.6282 )
+rotation = 1.5678
+scale = Vector2( 3.57751, 1.00002 )
+
+[node name="LoreLabel" parent="Lore" instance=ExtResource( 18 )]
+margin_left = 9797.3
+margin_top = -1334.84
+margin_right = 10732.3
+margin_bottom = -1275.84
+text = "Some checkpoints are
+ always enabled."
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -917, 88 )
 z_index = 10
 
+[node name="ProgressPath" type="Path2D" parent="."]
+curve = SubResource( 15 )
+
+[connection signal="triggered" from="Checkpoints/Checkpoint6" to="Lore/LoreLabel" method="trigger"]
 [connection signal="state_changed" from="Other/Level1/Group1/Lever" to="Other/Level1/Group1/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group2/Lever" to="Other/Level1/Group2/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group3/Lever" to="Other/Level1/Group3/Door" method="_set_state"]
@@ -746,10 +980,10 @@ z_index = 10
 [connection signal="state_changed" from="Other/Level1/Group4/Lever2" to="Other/Level1/Group4/Door2" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group4/Lever3" to="Other/Level1/Group4/Door3" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group4/Lever4" to="Other/Level1/Group4/Lever3" method="_set_state"]
+[connection signal="state_changed" from="Other/Level1/Group5/Lever" to="Other/Level1/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Other/Level1/Group5/Lever" to="Other/Level1/Group5/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group5/Lever" to="Other/Level1/Group5/Door2" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group5/Lever" to="Other/Level1/Group5/Door3" method="_set_state"]
-[connection signal="state_changed" from="Other/Level1/Group5/Lever" to="Other/Level1/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Other/Level1/Group5/Lever2" to="Other/Level1/Group5/Lever" method="_set_state"]
 [connection signal="state_changed" from="Other/Level1/Group6/Lever" to="Other/Level1/Group6/Door" method="_set_state"]
 [connection signal="state_changed" from="Other/Level2/Group1/Lever" to="Other/Level2/Group1/Door" method="_set_state"]
@@ -761,3 +995,18 @@ z_index = 10
 [connection signal="triggered" from="Enemies/Level2/Ghost2/HiddenTrigger" to="Enemies/Level2/Ghost2/Ghost2" method="wake_up"]
 [connection signal="triggered" from="Enemies/Level2/Ghost2/HiddenTrigger2" to="Enemies/Level2/Ghost2/Ghost" method="wake_up"]
 [connection signal="triggered" from="Enemies/Level2/Ghost2/HiddenTrigger2" to="Enemies/Level2/Ghost2/Ghost2" method="wake_up"]
+[connection signal="triggered" from="Lore/Label1/HiddenTrigger" to="Lore/Label1/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label2/HiddenTrigger" to="Lore/Label2/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label3/HiddenTrigger" to="Lore/Label3/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label4/HiddenTrigger" to="Lore/Label4/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label5/HiddenTrigger" to="Lore/Label5/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label6/HiddenTrigger" to="Lore/Label6/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label7/HiddenTrigger" to="Lore/Label7/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label8/HiddenTrigger" to="Lore/Label8/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label9/HiddenTrigger" to="Lore/Label9/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label10/HiddenTrigger" to="Lore/Label10/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label11/HiddenTrigger" to="Lore/Label11/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label12/HiddenTrigger" to="Lore/Label12/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label13/HiddenTrigger" to="Lore/Label13/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label14/HiddenTrigger" to="Lore/Label14/LoreLabel" method="trigger"]
+[connection signal="triggered" from="Lore/Label15/HiddenTrigger" to="Lore/Label15/LoreLabel" method="trigger"]
