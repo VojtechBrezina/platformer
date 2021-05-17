@@ -1045,11 +1045,12 @@ rotation = -0.173423
 scale = Vector2( 15.8294, 1 )
 
 [node name="HiddenTrigger5" parent="EnvironmentTriggers" groups=[
-"environment_trigger",
+"zoom",
 ] instance=ExtResource( 15 )]
-position = Vector2( 9276.32, -1753.45 )
-rotation = -0.173423
-scale = Vector2( 15.8294, 1 )
+position = Vector2( 6744.2, -3266.27 )
+rotation = -1.57246
+scale = Vector2( 4.90802, 1 )
+environment = "cave"
 
 [node name="HiddenTrigger3" parent="EnvironmentTriggers" groups=[
 "zoom",

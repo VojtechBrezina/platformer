@@ -45,7 +45,7 @@ func set_player(p: Node2D):
 	player = p
 
 func new_game() -> void:
-	$Tween.reset(self)
+	$Tween.remove(self)
 	position = default_position
 	modulate = Color(1,1,1,1)
 	$Area2D/CollisionShape2D.set_deferred('disabled', false)
