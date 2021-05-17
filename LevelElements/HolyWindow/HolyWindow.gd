@@ -5,6 +5,9 @@ var light_energies := {
 	'cave': 1
 }
 
+func _ready() -> void:
+	$Light2D.visible = true
+
 func set_environment(e: String, fast: bool = false) -> void:
 	if fast:
 		$Light2D.energy = light_energies[e]

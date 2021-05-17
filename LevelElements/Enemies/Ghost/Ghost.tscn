@@ -33,6 +33,8 @@ height = 25.9308
 "revivable",
 "save",
 ]]
+z_index = 4
+z_as_relative = false
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 371, 386, 51, 73 )
@@ -61,3 +63,4 @@ occluder = SubResource( 2 )
 shape = SubResource( 3 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

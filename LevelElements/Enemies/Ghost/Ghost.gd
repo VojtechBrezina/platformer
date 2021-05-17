@@ -7,11 +7,27 @@ onready var p_pos := position
 
 onready var default_position := position
 onready var default_region := region_rect
+onready var default_scale := global_scale
 
 var dead := false
 
+var windows = {}
+
 func _ready() -> void:
 	$AnimationPlayer.stop()
+
+func _process(_delta: float) -> void:
+	if not $Tween.is_active() and windows.size():
+		if not $Tween.is_active():
+			if global_scale == Vector2.ONE:
+				dead = true
+				$Tween.interpolate_property(self, 'modulate', null, Color(1,1,1,0), 1)
+				$Area2D/CollisionShape2D.set_deferred('disabled', true)
+				$LightOccluder2D.light_mask = 0
+			else:
+				$Tween.interpolate_property(self, 'scale', null, scale - Vector2.ONE, 1)
+			$Tween.start()
+
 
 func follow(pos: Vector2, delta) -> void:
 	if not following:
@@ -30,6 +46,7 @@ func new_game() -> void:
 	$AnimationPlayer.stop()
 	region_rect = default_region
 	dead = false
+	global_scale = default_scale
 
 func wake_up() -> void:
 	following = true
@@ -40,26 +57,28 @@ func revive() -> void:
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.is_in_group('holy'):
-		dead = true
-		$Tween.interpolate_property(self, 'modulate', null, Color(1,1,1,0), 1)
-		$Tween.start()
-		$Area2D/CollisionShape2D.set_deferred('disabled', true)
-		$LightOccluder2D.light_mask = 0
-
+		windows[area] = true
 func _save() -> void:
 	Global.save_state_data[str(get_path())] = {
 		'pos_x': position.x,
 		'pos_y': position.y,
 		'following': following,
-		'dead': dead
+		'dead': dead,
+		'scale': global_scale.x
 	}
 
 func _load(data: Dictionary) -> void:
 	position = Vector2(float(data['pos_x']), float(data['pos_y']))
 	following = data['following']
 	dead = data['dead']
+	global_scale = data['scale'] * Vector2.ONE
 	if dead:
 		modulate = Color(1,1,1,0)
 		$Area2D/CollisionShape2D.set_deferred('disabled', true)
 		$LightOccluder2D.light_mask = 0
 		
+
+
+func _on_Area2D_area_exited(area: Area2D) -> void:
+	if area.is_in_group('holy'):
+		windows.erase(area)

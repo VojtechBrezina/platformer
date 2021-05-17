@@ -15,7 +15,7 @@ var pause_start_time := -1
 var last_environment := 'outside'
 var restart_on_death := true
 var save_state_data := {}
-const SAVE_STATE_VERSION = 0
+const SAVE_STATE_VERSION = 1
 
 signal pause_changed(p)
 signal mode_changed(m)

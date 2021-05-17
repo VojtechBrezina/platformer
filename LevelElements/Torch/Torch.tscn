@@ -50,6 +50,7 @@ region_enabled = true
 region_rect = Rect2( 72, 216, 70, 70 )
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 2 )
 texture_scale = 0.966358
 color = Color( 0.854902, 0.541176, 0, 1 )

@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var animation_player := $AnimationPlayer
 
-const WALK_SPEED := 500
 const GRAVITY := 50
 const JUMP_HEIGHT := 20
 var velocity := Vector2(0, 0)
@@ -13,16 +12,17 @@ onready var default_dir := -scale.x
 onready var dir := default_dir
 
 var on_wall := false
+onready var speed = 500 * rand_range(0.9, 1.1)
 
 func _ready() -> void:
 	animation_player.play('walk')
 
 
 func _physics_process(_delta: float) -> void:
-	velocity.x = WALK_SPEED * dir
+	velocity.x = speed * dir
 	velocity.y += GRAVITY
 
-	velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.8)
+	velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.9)
 	if is_on_wall() and not on_wall:
 		dir *= -1
 		global_scale.x = -1 if dir else 1
@@ -46,12 +46,14 @@ func _save() -> void:
 		'pos_y': position.y,
 		'vel_x': velocity.x,
 		'vel_y': velocity.y,
-		'dir': dir
+		'dir': dir,
+		'speed': speed
 	}
 
 func _load(data: Dictionary) -> void:
 	position = Vector2(float(data['pos_x']), float(data['pos_y']))
 	velocity = Vector2(float(data['vel_x']), float(data['vel_y']))
+	speed = data['speed']
 	dir = data['dir']
 	if dir > 0:
 		scale.x = -1

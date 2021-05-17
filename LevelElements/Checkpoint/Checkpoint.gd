@@ -1,3 +1,4 @@
+tool
 extends Area2D
 
 var active := false
@@ -5,8 +6,8 @@ var enabled := false
 
 signal triggered
 
-export(String) var environment := 'outside'
-export(bool) var level := false
+export(String, 'outside', 'cave') var environment := 'outside'
+export(bool) var level := false setget _set_level
 
 var enbled_animations := {
 	true: 'idle',
@@ -14,7 +15,7 @@ var enbled_animations := {
 }
 
 func _ready() -> void:
-	pass
+	_update_editor()
 
 func trigger() -> void:
 	if not active and (enabled or level):
@@ -45,3 +46,11 @@ func _save() -> void:
 func _load(data: Dictionary) -> void:
 	if data['active']:
 		call_deferred('trigger')
+
+func _update_editor() -> void:
+	if Engine.editor_hint:
+		$Sprite/AnimationPlayer.play('level' if level else 'idle')
+
+func _set_level(l: bool) -> void:
+	level = l
+	_update_editor()

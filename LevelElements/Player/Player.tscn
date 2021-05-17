@@ -168,6 +168,7 @@ height = 28.0
 "new_game",
 "save",
 ]]
+collision_layer = 8
 collision_mask = 5
 script = ExtResource( 1 )
 

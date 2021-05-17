@@ -7,6 +7,7 @@ var light_energies := {
 
 func _ready() -> void:
 	$AnimationPlayer.play('burn')
+	$Light2D.visible = true
 
 func set_environment(e: String, fast: bool = false) -> void:
 	if fast:

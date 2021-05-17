@@ -3,8 +3,11 @@
 [ext_resource path="res://assets/Base pack/Items/items_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://LevelElements/Checkpoint/Checkpoint.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "active"
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.1481
+height = 42.6838
+
+[sub_resource type="Animation" id=2]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -20,8 +23,7 @@ tracks/0/keys = {
 "values": [ Rect2( 216, 432, 70, 70 ), Rect2( 216, 360, 70, 70 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "active_level"
+[sub_resource type="Animation" id=3]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -37,7 +39,7 @@ tracks/0/keys = {
 "values": [ Rect2( 203, 0, 70, 70 ), Rect2( 202, 144, 70, 70 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -52,7 +54,7 @@ tracks/0/keys = {
 "values": [ Rect2( 203, 72, 70, 70 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -67,8 +69,7 @@ tracks/0/keys = {
 "values": [ Rect2( 216, 288, 70, 70 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "level"
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")
@@ -83,17 +84,22 @@ tracks/0/keys = {
 "values": [ Rect2( 144, 434, 70, 70 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 14.1481
-height = 42.6838
-
 [node name="Checkpoint" type="Area2D" groups=[
 "checkpoint",
 "new_game",
 "save",
 "trigger",
 ]]
+z_index = 1
+z_as_relative = false
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -23.9385, 7.62939e-06 )
+shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 visible = false
@@ -107,12 +113,8 @@ region_enabled = true
 region_rect = Rect2( 216, 288, 70, 70 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/active = SubResource( 1 )
-anims/active_level = SubResource( 2 )
-anims/disabled = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/level = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -23.9385, 7.62939e-06 )
-shape = SubResource( 6 )
+anims/active = SubResource( 2 )
+anims/active_level = SubResource( 3 )
+anims/disabled = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/level = SubResource( 6 )

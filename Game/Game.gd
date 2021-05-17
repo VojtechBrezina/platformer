@@ -6,7 +6,7 @@ var environment_colors := {
 }
 
 func _process(_delta: float) -> void:
-	Global.emit_signal('progress', $ProgressPath.curve.get_closest_offset($Player.position) / $ProgressPath.curve.get_baked_length())
+	Global.emit_signal('progress', $GlobalElements/ProgressPath.curve.get_closest_offset($GlobalElements/Player.position) / $GlobalElements/ProgressPath.curve.get_baked_length())
 
 func set_environment(e: String, fast: bool = false) -> void:
 	if fast:

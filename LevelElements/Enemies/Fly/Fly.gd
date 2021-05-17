@@ -3,7 +3,7 @@ extends PathFollow2D
 onready var default_offset := offset
 
 var p_pos := Vector2()
-onready var speed = 400 + rand_range(-50, 50)
+onready var speed = 400 * rand_range(0.9, 1.1)
 
 func _ready() -> void:
 	$Sprite/AnimationPlayer.play('fly')

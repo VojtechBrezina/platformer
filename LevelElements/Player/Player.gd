@@ -11,6 +11,8 @@ var last_direction := false
 
 var last_duck := false
 
+var zoom := 1.0 setget _set_zoom, _get_zoom
+
 onready var default_position := position
 onready var checkpoint_position := default_position
 onready var checkpoint_environment := 'outside'
@@ -32,9 +34,19 @@ func _ready() -> void:
 
 
 func _resize() -> void:
-	$Camera2D.zoom = Vector2(1, 1) * (2100 / $Camera2D.get_viewport().size.x)
+	$Camera2D.zoom = Vector2(1, 1) * ((5000 if (Global.god_mode and Input.is_action_pressed('god_mode')) else 2100) / $Camera2D.get_viewport().size.x) * zoom
 
 func _physics_process(delta: float) -> void:
+	if Global.god_mode and Input.is_action_pressed('god_mode'):
+		if Input.is_action_pressed('duck'):
+			position += Vector2(0, 1000) * delta
+		if Input.is_action_pressed('walk_left'):
+			position += Vector2(-1000, 0) * delta
+		if Input.is_action_pressed('walk_right'):
+			position += Vector2(+1000, 0) * delta
+		if Input.is_action_pressed('jump'):
+			position += Vector2(0, -1000) * delta
+		return
 	var idle := true
 	var duck := false
 
@@ -52,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = WALK_SPEED
 			idle = false
 		
-	if Input.is_action_pressed('jump') and (is_on_floor() or (Global.god_mode and Input.is_action_pressed('god_mode'))):
+	if Input.is_action_pressed('jump') and (is_on_floor()):
 		velocity.y = -GRAVITY * JUMP_HEIGHT
 		idle = false
 	else:
@@ -97,10 +109,11 @@ func check_colision(node: Node) -> void:
 			checkpoint_environment = node.environment
 			if node.level:
 				Global.restart_on_death = false
-	if node.is_in_group('cave_environment'):
-		Global.set_environment('cave')
-	if node.is_in_group('outside_environment'):
-		Global.set_environment('outside')
+	if node.is_in_group('environment_trigger'):
+		Global.set_environment(node.environment)
+	if node.is_in_group('zoom'):
+		$Tween.interpolate_property(self, 'zoom', null, node.zoom, 1)
+		$Tween.start()
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
@@ -135,3 +148,15 @@ func _load(data: Dictionary) -> void:
 	velocity = Vector2(float(data['vel_x']), float(data['vel_y']))
 	checkpoint_position = Vector2(float(data['cp_x']), float(data['cp_y']))
 	checkpoint_environment = data['cp_e']
+
+func _set_zoom(z: float) -> void:
+	zoom = z
+	_resize()
+
+func _get_zoom() -> float:
+	return zoom
+
+
+func _input(event: InputEvent) -> void:
+	if Global.god_mode and event.is_action('god_mode'):
+		_resize()
