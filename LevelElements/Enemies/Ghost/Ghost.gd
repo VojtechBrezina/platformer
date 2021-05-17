@@ -45,7 +45,7 @@ func set_player(p: Node2D):
 	player = p
 
 func new_game() -> void:
-	$Tween.remove(self)
+	$Tween.remove_all()
 	position = default_position
 	modulate = Color(1,1,1,1)
 	$Area2D/CollisionShape2D.set_deferred('disabled', false)
@@ -54,7 +54,8 @@ func new_game() -> void:
 	$AnimationPlayer.stop()
 	region_rect = default_region
 	dead = false
-	global_scale = default_scale
+	$Tween.call_deferred('remove_all')
+	set_deferred('global_scale', default_scale)
 
 func wake_up() -> void:
 	following = true
