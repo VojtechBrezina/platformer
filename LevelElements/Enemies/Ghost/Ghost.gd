@@ -9,6 +9,8 @@ onready var default_position := position
 onready var default_region := region_rect
 onready var default_scale := global_scale
 
+var player: Node2D = null
+
 var dead := false
 
 var windows = {}
@@ -16,7 +18,7 @@ var windows = {}
 func _ready() -> void:
 	$AnimationPlayer.stop()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not $Tween.is_active() and windows.size():
 		if not $Tween.is_active():
 			if global_scale == Vector2.ONE:
@@ -27,6 +29,8 @@ func _process(_delta: float) -> void:
 			else:
 				$Tween.interpolate_property(self, 'scale', null, scale - Vector2.ONE, 1)
 			$Tween.start()
+	if player:
+		follow(player.position, delta)
 
 
 func follow(pos: Vector2, delta) -> void:
@@ -37,8 +41,11 @@ func follow(pos: Vector2, delta) -> void:
 	var dist := (pos - position)
 	position += dist.normalized() * (SPEED * delta)
 
+func set_player(p: Node2D):
+	player = p
+
 func new_game() -> void:
-	($Tween as Tween).reset(self)
+	$Tween.reset(self)
 	position = default_position
 	modulate = Color(1,1,1,1)
 	$Area2D/CollisionShape2D.set_deferred('disabled', false)

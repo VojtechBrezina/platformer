@@ -31,6 +31,7 @@ func _ready() -> void:
 	animation_player.play('idle')
 	var _tmp = get_viewport().connect('size_changed', self, '_resize')
 	call_deferred('_resize')
+	get_tree().call_group('follow', 'set_player', self)
 
 
 func _resize() -> void:
@@ -79,7 +80,7 @@ func _physics_process(delta: float) -> void:
 				last_direction = velocity.x < 0
 			animation_player.play('walk' if (is_on_floor() or is_on_wall()) else 'jump')
 
-	get_tree().call_group('follow', 'follow', position, delta)
+	#get_tree().call_group('follow', 'follow', position, delta)
 
 	layers = 1 if duck else 5
 	$PlayerSprite.flip_h = last_direction
