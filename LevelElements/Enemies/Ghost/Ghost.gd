@@ -38,6 +38,7 @@ func follow(pos: Vector2, delta) -> void:
 	position += dist.normalized() * (SPEED * delta)
 
 func new_game() -> void:
+	($Tween as Tween).reset(self)
 	position = default_position
 	modulate = Color(1,1,1,1)
 	$Area2D/CollisionShape2D.set_deferred('disabled', false)
