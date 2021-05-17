@@ -896,7 +896,7 @@ position = Vector2( 6270.88, -3885.86 )
 scale = Vector2( 10, 10 )
 
 [node name="HiddenTrigger" parent="Levels/Level2/Enemies/Bossfight" instance=ExtResource( 15 )]
-position = Vector2( 5644.4, -3529.69 )
+position = Vector2( 6444.53, -3109.25 )
 rotation = 0.00254588
 scale = Vector2( 6.24344, 1 )
 z_index = 1
