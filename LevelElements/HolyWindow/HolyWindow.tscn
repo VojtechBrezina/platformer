@@ -13,6 +13,7 @@ radius = 150.0
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 914, 140, 61, 70 )
+region_filter_clip = true
 script = ExtResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="."]
