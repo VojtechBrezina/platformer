@@ -1075,7 +1075,7 @@ position = Vector2( 3668.1, -3222.26 )
 z_index = -1
 
 [node name="Player" parent="GlobalElements" instance=ExtResource( 1 )]
-position = Vector2( -744.793, 56.8347 )
+position = Vector2( -920.354, 90.8142 )
 z_index = 10
 
 [node name="ProgressPath" type="Path2D" parent="GlobalElements"]
@@ -1088,10 +1088,10 @@ curve = SubResource( 14 )
 [connection signal="state_changed" from="Levels/Level1/Other/Group4/Lever2" to="Levels/Level1/Other/Group4/Door2" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group4/Lever3" to="Levels/Level1/Other/Group4/Door3" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group4/Lever4" to="Levels/Level1/Other/Group4/Lever3" method="_set_state"]
+[connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever" to="Levels/Level1/Other/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever" to="Levels/Level1/Other/Group5/Door2" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever" to="Levels/Level1/Other/Group5/Door" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever" to="Levels/Level1/Other/Group5/Door3" method="_set_state"]
-[connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever" to="Levels/Level1/Other/Group5/Lever2" method="_set_state_safe"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group5/Lever2" to="Levels/Level1/Other/Group5/Lever" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level1/Other/Group6/Lever" to="Levels/Level1/Other/Group6/Door" method="_set_state"]
 [connection signal="triggered" from="Levels/Level1/Lore/Label1/HiddenTrigger" to="Levels/Level1/Lore/Label1/LoreLabel" method="trigger"]
@@ -1113,8 +1113,8 @@ curve = SubResource( 14 )
 [connection signal="state_changed" from="Levels/Level2/Other/Group2/Lever" to="Levels/Level2/Other/Group2/Door" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level2/Other/Group3/Lever" to="Levels/Level2/Other/Group3/Door" method="_set_state"]
 [connection signal="state_changed" from="Levels/Level2/Other/Boss/Lever" to="Levels/Level2/Other/Boss/Door" method="_set_state"]
-[connection signal="triggered" from="Levels/Level2/Enemies/Ghost1/HiddenTrigger" to="Levels/Level2/Enemies/Ghost1/Ghost2" method="wake_up"]
 [connection signal="triggered" from="Levels/Level2/Enemies/Ghost1/HiddenTrigger" to="Levels/Level2/Enemies/Ghost1/Ghost" method="wake_up"]
+[connection signal="triggered" from="Levels/Level2/Enemies/Ghost1/HiddenTrigger" to="Levels/Level2/Enemies/Ghost1/Ghost2" method="wake_up"]
 [connection signal="triggered" from="Levels/Level2/Enemies/Ghost2/HiddenTrigger" to="Levels/Level2/Enemies/Ghost2/Ghost" method="wake_up"]
 [connection signal="triggered" from="Levels/Level2/Enemies/Ghost2/HiddenTrigger" to="Levels/Level2/Enemies/Ghost2/Ghost2" method="wake_up"]
 [connection signal="triggered" from="Levels/Level2/Enemies/Ghost2/HiddenTrigger2" to="Levels/Level2/Enemies/Ghost2/Ghost" method="wake_up"]
