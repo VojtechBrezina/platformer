@@ -46,6 +46,7 @@ func set_player(p: Node2D):
 
 func new_game() -> void:
 	$Tween.remove_all()
+	windows.clear()
 	position = default_position
 	modulate = Color(1,1,1,1)
 	$Area2D/CollisionShape2D.set_deferred('disabled', false)
@@ -54,8 +55,7 @@ func new_game() -> void:
 	$AnimationPlayer.stop()
 	region_rect = default_region
 	dead = false
-	$Tween.call_deferred('remove_all')
-	set_deferred('global_scale', default_scale)
+	global_scale = default_scale
 
 func wake_up() -> void:
 	following = true
@@ -67,6 +67,12 @@ func revive() -> void:
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.is_in_group('holy'):
 		windows[area] = true
+
+func _on_Area2D_area_exited(area: Area2D) -> void:
+	if area.is_in_group('holy'):
+		windows.erase(area)
+
+
 func _save() -> void:
 	Global.save_state_data[str(get_path())] = {
 		'pos_x': position.x,
@@ -86,8 +92,3 @@ func _load(data: Dictionary) -> void:
 		$Area2D/CollisionShape2D.set_deferred('disabled', true)
 		$LightOccluder2D.light_mask = 0
 		
-
-
-func _on_Area2D_area_exited(area: Area2D) -> void:
-	if area.is_in_group('holy'):
-		windows.erase(area)
