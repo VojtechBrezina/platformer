@@ -25,11 +25,9 @@ func _physics_process(_delta: float) -> void:
 	velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.9)
 	if is_on_wall() and not on_wall:
 		dir *= -1
-		global_scale.x = -1 if dir else 1
+		$Sprite.flip_h = dir == 1
 		on_wall = true
 		$WallTimer.start()
-		
-			
 	
 func new_game() -> void:
 	position = default_position
@@ -55,6 +53,5 @@ func _load(data: Dictionary) -> void:
 	velocity = Vector2(float(data['vel_x']), float(data['vel_y']))
 	speed = data['speed']
 	dir = data['dir']
-	if dir > 0:
-		scale.x = -1
+	$Sprite.flip_h = dir == 1
 	
