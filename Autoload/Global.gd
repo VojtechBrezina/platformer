@@ -6,7 +6,7 @@ var checkpoints := false
 var instant_death := false
 var attempts := 0
 var god_mode := false
-const FILE_VERSION := 1
+const FILE_VERSION := 2
 
 var start_time := -1
 var victory_time := -1
@@ -54,6 +54,7 @@ func try_loading_setup() -> void:
 				instant_death = data['instant_death'] as bool
 			if version >= 1:
 				god_mode = data['god_mode']
+			
 
 func try_loading_state():
 	var file := File.new()
